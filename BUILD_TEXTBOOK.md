@@ -40,7 +40,7 @@ Claude Code MUST follow this loop:
 
 | Ch | Folder | Title | Status | Figures | Notes |
 |----|--------|-------|--------|---------|-------|
-| 1  | `chapters/01-overview`        | Overview: Prototypes, Products & the Business of Engineering | TODO | 0/4 | |
+| 1  | `chapters/01-overview`        | Overview: Prototypes, Products & the Business of Engineering | DONE | 4/4 | 4 figs; running-example business model + margin set; main.tex written |
 | 2  | `chapters/02-workflow`        | The Prototyping Mindset & the Workflow | TODO | 0/3 | |
 | 3  | `chapters/03-prototype-vs-product` | Prototype vs. Product & Selective Prototyping | TODO | 0/2 | |
 | 4  | `chapters/04-specifications`  | Specifications & Risk Prioritization | TODO | 0/3 | |
@@ -815,8 +815,8 @@ safety design.
 
 | Field | Current value | Set/updated in |
 |---|---|---|
-| Business model | *(set in Ch.1)* | Ch.1 |
-| Firm context | *(set in Ch.1)* | Ch.1 |
+| Business model | Hardware-as-a-Service: upfront hardware sale ($p = \$1{,}200$ CAD) + annual cloud subscription; GM = 60% | Ch.1 |
+| Firm context | 12-person engineering start-up; medium documentation weight; separate engineering and operations functions | Ch.1 |
 | Central question the prototype answers | *(set in Ch.2)* | Ch.2 |
 | Chosen fidelity | *(set in Ch.2)* | Ch.2 |
 | Subsystem classification (prototype vs trust) | *(set in Ch.3)* | Ch.3 |

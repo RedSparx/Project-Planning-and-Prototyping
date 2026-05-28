@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% main.tex — Project Planning & Prototyping textbook
+% Document class: Sparkle (redsparx/Sparkle on GitHub)
+% Compile: pdflatex → makeindex → pdflatex → pdflatex
+%   pdflatex  main.tex
+%   makeindex main.idx
+%   pdflatex  main.tex
+%   pdflatex  main.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[twoside]{Sparkle}
+
+% ─── Sparkle metadata ────────────────────────────────────────────────────────
+\documenttitle{Project Planning \& Prototyping}
+\authorname{J. F. N. Salik,}
+\authoremail{salikj@vaniercollege.qc.ca}
+\authortitle{Instructor, Computer Engineering Technology}
+\documentID{247-519-VA}
+\copyrightyear{2026}
+\authoraddress{%
+    \color{vanierred}\textbf{Department of Computer\\
+    Engineering Technology}\normalcolor\\%
+    Vanier College\\%
+    821 Sainte-Croix Avenue\\%
+    Saint-Laurent, Qu\'{e}bec\quad H4L~3X9}
+
+% ─── Institution colour ──────────────────────────────────────────────────────
+% Vanier College red (approximate institutional value).
+\definecolor{vanierred}{RGB}{195,0,47}
+
+% ─── Packages ────────────────────────────────────────────────────────────────
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{import}   % resolves images/ relative to each chapter folder
+
+% hyperref must be loaded last; hidelinks keeps PDF clean of coloured boxes.
+\usepackage[hidelinks]{hyperref}
+
+% ─── Chapter imports ─────────────────────────────────────────────────────────
+% Add one \import line per chapter as it reaches DONE status.
+% \import sets the path context so that \includegraphics{images/...} inside
+% each chapter.tex resolves to that chapter's own images/ subfolder.
+
+\begin{document}
+
+\import{chapters/01-overview/}{chapter.tex}
+
+%% Chapters below are not yet built — uncomment as each reaches DONE.
+% \import{chapters/02-workflow/}{chapter.tex}
+% \import{chapters/03-prototype-vs-product/}{chapter.tex}
+% \import{chapters/04-specifications/}{chapter.tex}
+% \import{chapters/05-architecture/}{chapter.tex}
+% \import{chapters/06-ai/}{chapter.tex}
+% \import{chapters/07-iot-robotics/}{chapter.tex}
+% \import{chapters/08-planning/}{chapter.tex}
+% \import{chapters/09-bom-procurement/}{chapter.tex}
+% \import{chapters/10-economics/}{chapter.tex}
+% \import{chapters/11-validation/}{chapter.tex}
+% \import{chapters/12-documentation/}{chapter.tex}
+% \import{chapters/13-cost-bridge/}{chapter.tex}
+
+\end{document}
