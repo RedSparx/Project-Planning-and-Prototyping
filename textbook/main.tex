@@ -36,6 +36,10 @@
 % hyperref must be loaded last; hidelinks keeps PDF clean of coloured boxes.
 \usepackage[hidelinks]{hyperref}
 
+% Sparkle sets tocdepth=4 which pulls \paragraph callouts into the TOC.
+% Cap at subsection (depth 2: chapter / section / subsection only).
+\setcounter{tocdepth}{2}
+
 % ─── Chapter imports ─────────────────────────────────────────────────────────
 % Add one \import line per chapter as it reaches DONE status.
 % \import sets the path context so that \includegraphics{images/...} inside
