@@ -109,127 +109,147 @@ def make_fig01_pipeline():
 # ═══════════════════════════════════════════════════════════════════════════════
 def make_fig02_course_map():
     fig, ax = plt.subplots(figsize=(11, 3.0))
-    ax.set_xlim(0.5, 12.5)
-    ax.set_ylim(-0.3, 4.2)
+
+    # Y layout: theory top, lab bottom, milestones above theory
+    THEORY_Y = 2.55   # center of theory swim lane
+    LAB_Y    = 1.15   # center of lab swim lane
+    ROW_H    = 0.72   # height of each swim lane cell
+    BAND_BOT = LAB_Y - ROW_H / 2 - 0.06
+    BAND_TOP = THEORY_Y + ROW_H / 2 + 0.06
+    BAND_H   = BAND_TOP - BAND_BOT
+
+    # X layout: week 1 centered at x=1, week 12 at x=12
+    ax.set_xlim(0.3, 12.7)
+    ax.set_ylim(0.0, 4.0)
     ax.axis("off")
-    mpl.rcParams["axes.grid"] = False
 
-    # Track centers — tightened vertical spacing to fit in 3.0 in
-    THEORY_Y = 3.0
-    LAB_Y    = 1.3
-    ROW_H    = 0.75
+    # ── Stage-Gate phase background bands ──────────────────────────────────
+    # Stage 2 Scoping: weeks 1–3  (x: 0.5 to 3.5)
+    # Stage 3 Development: weeks 4–10 (x: 3.5 to 10.5)
+    # Stage 4 Testing: weeks 11–12 (x: 10.5 to 12.5)
+    phase_bands = [
+        (0.5,  3.5,  "Stage 2\nScoping",     0.92),
+        (3.5,  10.5, "Stage 3\nDevelopment", 0.82),
+        (10.5, 12.5, "Stage 4\nTesting",     0.72),
+    ]
+    for x0, x1, lbl, fc in phase_bands:
+        rect = mpatches.Rectangle(
+            (x0, BAND_BOT), x1 - x0, BAND_H,
+            facecolor=str(fc), edgecolor="none", zorder=0,
+        )
+        ax.add_patch(rect)
+        # Phase label centered in band, above the theory row
+        mid_x = (x0 + x1) / 2
+        ax.text(mid_x, THEORY_Y + ROW_H / 2 + 0.22, lbl,
+                ha="center", va="bottom", fontsize=7, color="0.30",
+                fontstyle="italic", multialignment="center", zorder=1)
 
-    # Track background bands
-    for cy, label in [(THEORY_Y, "Theory\nTrack"), (LAB_Y, "Lab /\nPractice")]:
-        band = mpatches.FancyBboxPatch(
-            (0.6, cy - ROW_H / 2 - 0.05), 11.8, ROW_H + 0.1,
-            boxstyle="round,pad=0.05",
-            facecolor="0.94", edgecolor="0.65", linewidth=0.8,
+    # Gate transition dashed vertical lines
+    for gate_x in [3.5, 10.5]:
+        ax.plot([gate_x, gate_x], [BAND_BOT, BAND_TOP],
+                color="0.45", lw=1.1, linestyle="--", zorder=2)
+
+    # ── Track lane outlines (light border around each full row) ─────────────
+    for cy in [THEORY_Y, LAB_Y]:
+        band = mpatches.Rectangle(
+            (0.5, cy - ROW_H / 2), 12.0, ROW_H,
+            facecolor="none", edgecolor="0.55", linewidth=1.0, zorder=1,
         )
         ax.add_patch(band)
-        ax.text(0.1, cy, label, ha="right", va="center", fontsize=8,
-                fontweight="bold", multialignment="center")
 
-    # Theory: one cell per chapter/week grouping
-    theory_cells = [
-        (1,  1,  "Ch.1\nOverview",          0.88),
-        (2,  1,  "Ch.2–3\nWorkflow",        0.88),
-        (3,  1,  "Ch.4\nSpec & Risk",       0.75),
-        (4,  1,  "Ch.5\nArchitecture",      0.75),
-        (5,  1,  "Ch.6\nAI Tools",          0.88),
-        (6,  1,  "Ch.7\nIoT & Safety",      0.88),
-        (7,  1,  "Ch.8\nPlanning",          0.88),
-        (8,  1,  "Ch.9\nBOM",               0.88),
-        (9,  1,  "Ch.10\nEconomics",        0.75),
-        (10, 1,  "Ch.11\nValidation",       0.88),
-        (11, 1,  "Ch.12\nDocumentation",    0.88),
-        (12, 1,  "Ch.13\nCost Bridge",      0.75),
+    # Track side labels
+    ax.text(0.45, THEORY_Y, "Theory", ha="right", va="center",
+            fontsize=8, fontweight="bold", color="0.20")
+    ax.text(0.45, LAB_Y, "Lab /\nPractice", ha="right", va="center",
+            fontsize=7.5, fontweight="bold", color="0.20",
+            multialignment="right")
+
+    # ── Per-week data ────────────────────────────────────────────────────────
+    # theory_rows: (week, theory_text, lab_text)
+    week_data = [
+        (1,  "Ch.1-2\nOvrvw/S-G",   "Proj brief\nKano survey"),
+        (2,  "Ch.3-4\nWkflw/Specs",  "Risk matrix\nwrkshp"),
+        (3,  "Ch.4\nSpecs cont.",    "Proposal\nwriting"),
+        (4,  "Ch.5\nArchitecture",   "Arch.\nworkshop"),
+        (5,  "Ch.6\nComponents",     "Comp sel.\nBOM start"),
+        (6,  "Ch.7\nDFX",            "DFX review"),
+        (7,  "Ch.8-9\nAI/IoT/Safe",  "Subsystem\ndesign"),
+        (8,  "Ch.10-11\nPlan/BOM",   "Procure.\nGantt"),
+        (9,  "Ch.12\nEconomics",     "Cost\nanalysis"),
+        (10, "Ch.13\nVer. Control",  "Build;\ngit setup"),
+        (11, "Ch.14\nValidation",    "Test proc.\nFTA"),
+        (12, "Ch.15-17\nIP/Docs/Cst","Portfolio\nassembly"),
     ]
+
     CW = 0.88   # cell width
-    for wk, span, lbl, fc in theory_cells:
+    CH = ROW_H - 0.10  # cell height (slightly inset from row)
+
+    for wk, t_lbl, l_lbl in week_data:
+        # Theory cell — gray 0.88 for stage 2 weeks, 0.80 for stage 3, 0.70 for stage 4
+        if wk <= 3:
+            t_fc = "0.86"
+        elif wk <= 10:
+            t_fc = "0.76"
+        else:
+            t_fc = "0.66"
+
+        # Theory cell
         rect = mpatches.FancyBboxPatch(
-            (wk - CW * span / 2, THEORY_Y - ROW_H / 2 + 0.04),
-            CW * span - 0.06, ROW_H - 0.08,
-            boxstyle="round,pad=0.05",
-            facecolor=str(fc), edgecolor="black", linewidth=0.7,
+            (wk - CW / 2, THEORY_Y - CH / 2),
+            CW - 0.06, CH,
+            boxstyle="round,pad=0.04",
+            facecolor=t_fc, edgecolor="0.35", linewidth=1.0, zorder=3,
         )
         ax.add_patch(rect)
-        ax.text(wk, THEORY_Y, lbl, ha="center", va="center",
-                fontsize=6.5, multialignment="center")
+        ax.text(wk - 0.03, THEORY_Y, t_lbl, ha="center", va="center",
+                fontsize=7, multialignment="center", zorder=4,
+                linespacing=1.15)
 
-    # Lab track: workflow stages as coloured spans
-    stage_gray = [0.20, 0.32, 0.44, 0.56, 0.66, 0.76, 0.86]
-    stages = [
-        # (start_wk, end_wk, label, gray_idx)
-        (2.0, 3.5, "① Specification\n& Risk",         0),
-        (3.5, 4.8, "② Scope\n& Plan",                 1),
-        (4.8, 5.8, "③ Architecture",                  2),
-        (5.8, 7.5, "④ Subsystem\nDesign",             3),
-        (7.5, 9.2, "⑤ Build &\nIntegrate",            4),
-        (9.2, 11.0, "⑥ Validate\n& Measure",          5),
-        (11.0, 12.5, "⑦ Compile &\nEconomics",        6),
-    ]
-    for s_wk, e_wk, lbl, gi in stages:
-        fc = str(stage_gray[gi])
+        # Lab cell — slightly lighter
+        if wk <= 3:
+            l_fc = "0.90"
+        elif wk <= 10:
+            l_fc = "0.84"
+        else:
+            l_fc = "0.78"
+
         rect = mpatches.FancyBboxPatch(
-            (s_wk - 0.45, LAB_Y - ROW_H / 2 + 0.04),
-            (e_wk - s_wk) - 0.06, ROW_H - 0.08,
-            boxstyle="round,pad=0.05",
-            facecolor=fc, edgecolor="black", linewidth=0.7,
+            (wk - CW / 2, LAB_Y - CH / 2),
+            CW - 0.06, CH,
+            boxstyle="round,pad=0.04",
+            facecolor=l_fc, edgecolor="0.45", linewidth=1.0, zorder=3,
         )
         ax.add_patch(rect)
-        txt_col = "white" if stage_gray[gi] < 0.52 else "black"
-        mid = (s_wk + e_wk) / 2 - 0.22
-        ax.text(mid, LAB_Y, lbl, ha="center", va="center",
-                fontsize=6.5, color=txt_col, fontweight="bold",
-                multialignment="center")
+        ax.text(wk - 0.03, LAB_Y, l_lbl, ha="center", va="center",
+                fontsize=7, multialignment="center", zorder=4,
+                linespacing=1.15)
 
-    # Week 1 intro label
-    rect = mpatches.FancyBboxPatch(
-        (0.6, LAB_Y - ROW_H / 2 + 0.04), 0.88, ROW_H - 0.08,
-        boxstyle="round,pad=0.05",
-        facecolor="0.90", edgecolor="black", linewidth=0.7,
-    )
-    ax.add_patch(rect)
-    ax.text(1.05, LAB_Y, "Intro", ha="center", va="center", fontsize=6.5,
-            multialignment="center")
-
-    # Week axis
-    ax.set_xticks(range(1, 13))
-    ax.set_xticklabels([f"Wk {w}" for w in range(1, 13)], fontsize=7.5)
-    for spine in ax.spines.values():
-        spine.set_visible(False)
-    ax.tick_params(axis="x", length=0, pad=2)
-    ax.xaxis.set_tick_params(labelbottom=True)
-    ax.set_yticks([])
-
-    # Reposition the x-tick labels at the bottom
-    ax.set_xlabel("")
-
-    # Milestone markers (diamond + label above the figure)
+    # ── Milestone markers ───────────────────────────────────────────────────
     milestones = [
-        (4,  "M1\nProposal"),
-        (9,  "M2\nDesign Review"),
-        (12, "M3\nFinal Portfolio"),
+        (4,  "M1"),
+        (10, "M2"),
+        (12, "M3"),
     ]
     for wk, lbl in milestones:
-        # Vertical dashed line through both tracks
-        ax.plot([wk, wk], [LAB_Y - ROW_H / 2, THEORY_Y + ROW_H / 2],
-                color="black", lw=1.2, linestyle="--", zorder=5)
-        # Diamond marker
-        ax.plot(wk, THEORY_Y + ROW_H / 2 + 0.15, marker="D",
-                ms=6, color="black", zorder=6)
-        ax.text(wk, THEORY_Y + ROW_H / 2 + 0.45, lbl,
-                ha="center", va="bottom", fontsize=7, fontweight="bold",
-                multialignment="center")
+        # Vertical line drawn at zorder=2, behind cells (zorder=3),
+        # so cell boxes and text paint over it — no text/line overlap
+        ax.plot([wk, wk],
+                [LAB_Y - ROW_H / 2 - 0.04, THEORY_Y + ROW_H / 2 + 0.04],
+                color="black", lw=1.8, linestyle="-", zorder=2)
+        # Diamond above the theory row (above cells)
+        ax.plot(wk, THEORY_Y + ROW_H / 2 + 0.28, marker="D",
+                ms=7, color="black", zorder=6, markeredgewidth=1.2)
+        # Label above diamond
+        ax.text(wk, THEORY_Y + ROW_H / 2 + 0.52, lbl,
+                ha="center", va="bottom", fontsize=8, fontweight="bold",
+                zorder=6)
 
-    # Track labels on left
-    ax.text(0.55, THEORY_Y + ROW_H / 2 + 0.03, "THEORY", ha="center",
-            va="bottom", fontsize=6.5, color="0.4", fontstyle="italic")
-    ax.text(0.55, LAB_Y + ROW_H / 2 + 0.03, "LAB", ha="center",
-            va="bottom", fontsize=6.5, color="0.4", fontstyle="italic")
+    # ── Week-number x-axis ──────────────────────────────────────────────────
+    for wk in range(1, 13):
+        ax.text(wk, LAB_Y - ROW_H / 2 - 0.18, f"Wk {wk}",
+                ha="center", va="top", fontsize=7, color="0.25")
 
-    fig.tight_layout()
+    fig.tight_layout(pad=0.4)
     save(fig, "fig_02_course_map")
 
 
