@@ -1,5 +1,13 @@
 \chapter{The Prototyping Mindset \& the Workflow}
-\label{ch2}
+\label{ch3}
+
+\paragraph{Where this fits.}
+The seven-stage workflow in this chapter is the work you do \emph{inside}
+Stage~2/3 of the Stage-Gate model --- between Gate~2 (project approved)
+and Gate~3 (proof of concept accepted).
+Chapter~2 establishes the Stage-Gate model and uses Kano analysis to decide
+\emph{what} to prototype; this chapter teaches you \emph{how} to execute
+that prototype systematically.
 
 Every prototype you build costs time, materials, and opportunity.
 Build the wrong one --- too early, too polished, or targeting the wrong
@@ -28,7 +36,7 @@ After working through this chapter you will be able to:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Prototype = Answer to a Question, Reducer of Risk}
-\label{sec:ch2-question}
+\label{sec:ch3-question}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A prototype is not a small version of the final product.
@@ -62,7 +70,7 @@ that an unverified assumption collapses the project.
 Every assumption you have not tested is a risk.
 A prototype converts an assumption into a measurement, and a measurement
 into a decision.
-Figure~\ref{fig:ch2-value} shows how even a low-fidelity prototype delivers
+Figure~\ref{fig:ch3-value} shows how even a low-fidelity prototype delivers
 substantial intrinsic value --- knowledge and risk reduction --- long before
 artifact quality approaches production standards.
 
@@ -73,7 +81,7 @@ artifact quality approaches production standards.
            fidelity; extrinsic value (artifact quality, stakeholder confidence)
            grows mainly at high fidelity. Build to the fidelity the question
            requires, not the fidelity that impresses.}
-  \label{fig:ch2-value}
+  \label{fig:ch3-value}
 \end{figure}
 
 The discipline of framing every build as an answer to a question keeps your
@@ -82,10 +90,10 @@ features that are not yet questions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Seven Stages}
-\label{sec:ch2-seven-stages}
+\label{sec:ch3-seven-stages}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Figure~\ref{fig:ch2-workflow} shows the full Prototype Development Cycle.
+Figure~\ref{fig:ch3-workflow} shows the full Prototype Development Cycle.
 The seven stages run left to right; Stages~4 through~6 form the core
 build-test loop that iterates until the central question is answered.
 The loop is controlled --- you exit it on a criterion, not when you run out
@@ -97,12 +105,12 @@ of time.
   \caption{The seven-stage Prototype Development Cycle with the Design\,$\leftrightarrow$\,Validate
            iteration loop. Stages~4 through~6 form the core build-test loop;
            iteration is controlled, not ad-hoc.}
-  \label{fig:ch2-workflow}
+  \label{fig:ch3-workflow}
 \end{figure}
 
 %---------------------------------------------------------------------------
 \subsection{Stage~1: Specification \& Risk}
-\label{sec:ch2-stage1}
+\label{sec:ch3-stage1}
 %---------------------------------------------------------------------------
 
 Stage~1 transforms the project brief into a structured set of
@@ -138,7 +146,7 @@ Week~10.
 
 %---------------------------------------------------------------------------
 \subsection{Stage~2: Scoping \& Planning}
-\label{sec:ch2-stage2}
+\label{sec:ch3-stage2}
 %---------------------------------------------------------------------------
 
 Stage~2 converts the risk register into a prototype plan.
@@ -163,7 +171,7 @@ ten minutes and approve or correct before your team spends any build time.
 
 %---------------------------------------------------------------------------
 \subsection{Stage~3: Architecture}
-\label{sec:ch2-stage3}
+\label{sec:ch3-stage3}
 %---------------------------------------------------------------------------
 
 Stage~3 partitions the system into \textbf{subsystems}\index{subsystem} with
@@ -191,7 +199,7 @@ reflect that coupling.
 
 %---------------------------------------------------------------------------
 \subsection{Stage~4: Subsystem Design}
-\label{sec:ch2-stage4}
+\label{sec:ch3-stage4}
 %---------------------------------------------------------------------------
 
 Stage~4 is detailed design: component selection, schematic capture, firmware
@@ -206,14 +214,14 @@ Keep every design decision traceable to a specification line or a risk item.
 If you cannot trace it, question whether you need it.
 
 Stage~4 is the entry point to the Design\,$\leftrightarrow$\,Validate loop
-described in Section~\ref{sec:ch2-loop}.
+described in Section~\ref{sec:ch3-loop}.
 You design at the subsystem level, build the subsystem, measure it, and
 return to design if the measurement fails --- before integrating with
 adjacent subsystems.
 
 %---------------------------------------------------------------------------
 \subsection{Stage~5: Build \& Integration}
-\label{sec:ch2-stage5}
+\label{sec:ch3-stage5}
 %---------------------------------------------------------------------------
 
 Stage~5 is fabrication and assembly: soldering, 3D printing, firmware
@@ -241,7 +249,7 @@ trustworthy.
 
 %---------------------------------------------------------------------------
 \subsection{Stage~6: Validate \& Measure}
-\label{sec:ch2-stage6}
+\label{sec:ch3-stage6}
 %---------------------------------------------------------------------------
 
 Stage~6 is where you answer the question you wrote in Stage~2.
@@ -266,7 +274,7 @@ thrashing.
 
 %---------------------------------------------------------------------------
 \subsection{Stage~7: Compile \& Economics}
-\label{sec:ch2-stage7}
+\label{sec:ch3-stage7}
 %---------------------------------------------------------------------------
 
 Stage~7 closes the prototype milestone.
@@ -282,7 +290,7 @@ For the running example --- a 12-person start-up with a
 Hardware-as-a-Service model, price $p = \$1{,}200$~CAD, and variable cost
 $c_{\text{var}} = \$480$~CAD --- the contribution margin per unit is:
 \begin{equation}
-  \label{eq:ch2-margin}
+  \label{eq:ch3-margin}
   m = p - c_{\text{var}} = \$1{,}200 - \$480 = \$720~\text{CAD}
 \end{equation}
 
@@ -293,7 +301,7 @@ for the next milestone and a list of risks that remain open.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Controlled Iteration Loop (Design\,$\leftrightarrow$\,Validate)}
-\label{sec:ch2-loop}
+\label{sec:ch3-loop}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Stages~4, 5, and~6 form a loop.
@@ -338,7 +346,7 @@ Stage~4.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Prototype Types}
-\label{sec:ch2-types}
+\label{sec:ch3-types}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Not all prototypes serve the same purpose.
@@ -384,7 +392,7 @@ Match the type to the question first; fidelity follows from type.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Fidelity Matched to the Question}
-\label{sec:ch2-fidelity}
+\label{sec:ch3-fidelity}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \textbf{Fidelity}\index{fidelity} is the degree to which a prototype
@@ -392,7 +400,7 @@ resembles and performs like the final product.
 Higher fidelity costs more.
 The cost growth is not linear.
 
-Figure~\ref{fig:ch2-fidelity-ladder} shows relative effort plotted against
+Figure~\ref{fig:ch3-fidelity-ladder} shows relative effort plotted against
 fidelity level.
 The relationship is approximately exponential.
 
@@ -402,11 +410,11 @@ The relationship is approximately exponential.
   \caption{Relative effort rises steeply with fidelity level. A proof-of-concept
            (Level~2) answers many questions at a fraction of the cost of a
            looks-like/works-like prototype (Level~4).}
-  \label{fig:ch2-fidelity-ladder}
+  \label{fig:ch3-fidelity-ladder}
 \end{figure}
 
 \subsection{The Effort--Fidelity Model}
-\label{sec:ch2-effort-model}
+\label{sec:ch3-effort-model}
 
 Let $f \in \{1, 2, 3, 4, 5\}$ be the fidelity level, where $f=1$ is a
 hand sketch or simulation and $f=5$ is a pre-production prototype built with
@@ -414,7 +422,7 @@ production-intent processes.
 Define \textbf{relative effort}\index{effort!relative} $E(f)$ as:
 
 \begin{equation}
-  \label{eq:ch2-effort}
+  \label{eq:ch3-effort}
   E(f) = E_0 \cdot k^{\,f}, \qquad k > 1
 \end{equation}
 
@@ -428,12 +436,12 @@ testing, and more documentation.
 \subsubsection{Effort Table}
 
 Set $E_0 = 1$ and $k = 2.5$ as representative values.
-Table~\ref{tab:ch2-effort} shows the resulting effort at each level.
+Table~\ref{tab:ch3-effort} shows the resulting effort at each level.
 
 \begin{table}[htbp]
   \centering
   \caption{Relative effort $E(f) = 2.5^{\,f}$ for fidelity levels 1 through~5.}
-  \label{tab:ch2-effort}
+  \label{tab:ch3-effort}
   \begin{tabular}{cll}
     \hline
     \textbf{Level} $f$ & \textbf{Type} & \textbf{Relative Effort} $E(f)$ \\
@@ -449,7 +457,7 @@ Table~\ref{tab:ch2-effort} shows the resulting effort at each level.
 
 The ratio of effort at $f=5$ relative to $f=2$ is:
 \begin{equation}
-  \label{eq:ch2-effort-ratio}
+  \label{eq:ch3-effort-ratio}
   \frac{E(5)}{E(2)} = \frac{k^5}{k^2} = k^3 = 2.5^3 = 15.6
 \end{equation}
 
@@ -460,7 +468,7 @@ $f=5$ effort is \emph{spent after the question is already answered}.
 That is the waste the fidelity discipline prevents.
 
 \subsection{Running Example: Choosing Fidelity for the Sorter}
-\label{sec:ch2-sorter-fidelity}
+\label{sec:ch3-sorter-fidelity}
 
 Return to the central question for the connected IoT robotic sorting
 subsystem:
@@ -486,7 +494,7 @@ The team is deciding between two prototype options:
 
 Applying the effort model with $k=2.5$:
 \begin{equation}
-  \label{eq:ch2-sorter-ratio}
+  \label{eq:ch3-sorter-ratio}
   \frac{E(4)}{E(2)} = k^{4-2} = 2.5^2 = 6.25
 \end{equation}
 
@@ -520,7 +528,7 @@ The cost of a wrong hypothesis is bounded by the fidelity choice.
 
   \item \textbf{``Higher fidelity is always better.''}\index{pitfall!over-fidelity}
     Fidelity costs effort exponentially, as shown in
-    Table~\ref{tab:ch2-effort}.
+    Table~\ref{tab:ch3-effort}.
     A higher-fidelity prototype that cannot yet answer the question delivers
     zero additional information --- it only consumes schedule and budget.
     Match fidelity to the question; resist the instinct to impress.
@@ -553,8 +561,8 @@ The cost of a wrong hypothesis is bounded by the fidelity choice.
   pressure sensor achieves $\pm 0.5$~Pa accuracy when integrated with their
   MCU at $-20\,^{\circ}$C.
   \begin{enumerate}
-    \item Identify the most appropriate prototype type from \S2.4.
-    \item State the fidelity level from \S2.5 and justify the choice in one
+    \item Identify the most appropriate prototype type from \S3.4.
+    \item State the fidelity level from \S3.5 and justify the choice in one
           sentence.
     \item Identify one risk that would justify moving to a higher fidelity if
           the initial result is inconclusive.
@@ -592,7 +600,7 @@ $E_0 = 1$, $k = 3.0$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{End-of-Chapter Artifact}
-\label{sec:ch2-artifact}
+\label{sec:ch3-artifact}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \addcontentsline{toc}{section}{End-of-Chapter Artifact}
@@ -618,7 +626,7 @@ This fidelity is sufficient because the question is about sensor accuracy,
 actuator throughput, and network protocol performance --- none of which
 require a production PCB layout or an enclosure.
 Advancing to Level~4 at this stage would multiply effort by $6.25\times$
-(Equation~\ref{eq:ch2-sorter-ratio}) before the feasibility of the core
+(Equation~\ref{eq:ch3-sorter-ratio}) before the feasibility of the core
 mechanism is established.
 If the Level~2 prototype answers ``yes,'' Level~4 is the justified next
 investment; if ``no,'' the team reframes the architecture having lost
@@ -632,7 +640,7 @@ subsequent milestone.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Chapter Summary}
-\label{sec:ch2-summary}
+\label{sec:ch3-summary}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \addcontentsline{toc}{section}{Chapter Summary}
@@ -663,9 +671,10 @@ For the sorter running example, choosing Level~2 over Level~4 saves
 $6.25\times$ the effort on a question whose answer is not yet known.
 
 \bigskip
-\noindent\textbf{Transition to Chapter~3.}
-Chapter~3 examines the boundary between prototype and product in detail.
-You will learn to distinguish which subsystems require prototyping and which
-can be specified directly from validated prior art, and how to apply
-\emph{selective prototyping} to allocate your build budget to the risks that
-matter.
+\noindent\textbf{Transition to Chapter~4.}
+Chapter~4 turns the central question you have just defined into a complete
+specification and risk register.
+You will write measurable, testable requirements, separate ``what'' from
+``how,'' and rank risks using the FMEA risk-priority number --- producing the
+core deliverable of Stage-Gate Stage~2 and the foundation for every
+subsequent design decision.
