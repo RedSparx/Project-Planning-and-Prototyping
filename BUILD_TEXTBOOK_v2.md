@@ -38,7 +38,7 @@ and stops for review between chapters.
 |----|--------|-------|--------|---------|-------|
 | 1  | `chapters/01-overview`              | Overview: Prototypes, Products & the Business of Engineering | DONE | 4/4 | Stage-Gate fwd ref §1.3; IP fwd ref §1.7; fig_02_course_map regenerated (17 chs + Stage-Gate bands) |
 | 2  | `chapters/02-stagegate-kano`        | Product Development & the Stage-Gate Model | TODO | 0/4 | New chapter; absorbs old Ch.3 content |
-| 3  | `chapters/03-workflow`              | The Prototyping Mindset & the Workflow | REDO | 0/3 | Renumbered from old Ch.2; add Stage-Gate framing opener |
+| 3  | `chapters/03-workflow`              | The Prototyping Mindset & the Workflow | DONE | 3/3 | Renumbered from Ch.2; Stage-Gate opener + Gate 2/3 body refs; §3.6 added; intrinsic/extrinsic defined; LOs fixed; Try It Yourself restructured |
 | 4  | `chapters/04-specifications`        | Specifications & Risk Prioritization | REDO | 0/3 | Renumbered from old Ch.4; add Stage-Gate phase label opener |
 | 5  | `chapters/05-architecture`          | System Architecture & Interface Definition | TODO | 0/3 | |
 | 6  | `chapters/06-component-selection`   | Component Selection & Datasheet Literacy | TODO | 0/3 | New chapter |

@@ -4,18 +4,23 @@
 \paragraph{Where this fits.}
 The seven-stage workflow in this chapter is the work you do \emph{inside}
 Stage~2/3 of the Stage-Gate model --- between Gate~2 (project approved)
-and Gate~3 (proof of concept accepted).
+and Gate~3 (proof-of-concept go/no-go).
 Chapter~2 establishes the Stage-Gate model and uses Kano analysis to decide
 \emph{what} to prototype; this chapter teaches you \emph{how} to execute
 that prototype systematically.
+
+Chapter~1 established the business context: what a prototype must prove,
+and why that question must be answered before any product development
+investment is justified.
+This chapter gives you the process that answers it.
 
 Every prototype you build costs time, materials, and opportunity.
 Build the wrong one --- too early, too polished, or targeting the wrong
 question --- and you burn weeks that a one-day breadboard experiment would
 have saved.
-This chapter gives you the reasoning scaffold that prevents that waste: the
+This chapter gives you the tool that prevents that waste: the
 \textbf{Prototype Development Cycle}\index{Prototype Development Cycle}, a
-seven-stage process that turns an ambiguous project brief into a disciplined
+seven-stage process that converts a vague project brief into a disciplined
 sequence of validated decisions.
 By the end of the chapter you will be able to plan a prototype, defend your
 fidelity choice with arithmetic, and hand a concise question statement to
@@ -23,15 +28,14 @@ any reviewer, client, or collaborator.
 
 \bigskip
 \noindent\textbf{Learning Objectives.}
-After working through this chapter you will be able to:
 \begin{enumerate}
   \item Walk through all seven stages of the Prototype Development Cycle and
         explain the purpose of each.
-  \item Define a prototype by the question it answers and the risk it reduces.
+  \item Write a central question statement for a prototype and identify the risk it retires.
   \item Apply the controlled Design\,$\leftrightarrow$\,Validate iteration
         loop correctly.
   \item Select the appropriate prototype type for a given engineering question.
-  \item Choose fidelity deliberately based on the question, not habit.
+  \item Compute the relative effort ratio between two fidelity options using $E(f) = E_0 \cdot k^{\,f}$ and use the result to justify a fidelity choice.
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -84,9 +88,23 @@ artifact quality approaches production standards.
   \label{fig:ch3-value}
 \end{figure}
 
-The discipline of framing every build as an answer to a question keeps your
-team aligned and prevents the single most common prototyping failure: building
-features that are not yet questions.
+A prototype delivers two kinds of value.
+\textbf{Intrinsic value}\index{intrinsic value} is the knowledge gained
+and the risk retired by answering the central question; it is high even
+at low fidelity, because the question does not require a polished
+artifact.
+\textbf{Extrinsic value}\index{extrinsic value} is the quality and
+completeness of the artifact itself --- its appearance, robustness, and
+the confidence it gives to external stakeholders.
+Extrinsic value grows mainly at higher fidelity levels because it depends
+on how finished the prototype looks and behaves, not on whether the
+central question is answered.
+Build to the fidelity that delivers the intrinsic value you need;
+extrinsic value follows in later milestones.
+
+Framing every build as an answer to a question keeps the team aligned and
+prevents the most common prototyping failure: building features before the
+central question is answered.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Seven Stages}
@@ -167,7 +185,9 @@ If the question is about sort accuracy, the housing material is out of scope.
 Resist the urge to answer every question at once; you will get a chance in
 the next milestone.
 A well-scoped prototype plan is a document your supervisor can review in
-ten minutes and approve or correct before your team spends any build time.
+ten minutes and approve or correct before your team spends any build time ---
+and it is the key output that justifies a Gate~2 approval; Chapter~4
+develops it into a full specification and risk register.
 
 %---------------------------------------------------------------------------
 \subsection{Stage~3: Architecture}
@@ -192,7 +212,7 @@ integration will fail.
 In Stage~3 you negotiate and document those contracts before anyone starts
 detailed design.
 
-Architecture decisions also constrain which subsystem risks are separable.
+The architecture also determines which subsystem risks can be tested independently.
 If sort accuracy depends on both the sensor subsystem and the conveyor speed
 controller, you cannot test one without the other --- and your plan must
 reflect that coupling.
@@ -236,9 +256,9 @@ Run integration in a defined order: bring up the simplest subsystem first,
 verify its standalone behaviour, then attach the next subsystem and re-verify
 the combined behaviour before adding the third.
 
-Document every deviation from the Stage~4 design as it happens.
-A post-hoc reconstruction from memory is inaccurate and defeats the purpose
-of having a design stage at all.
+Document every deviation from the Stage~4 design as it happens; post-hoc
+reconstruction from memory is unreliable and undermines the entire design
+stage.
 
 \paragraph{In Practice.}
 Keep a shared build log --- a shared document or a lab notebook photographed
@@ -298,6 +318,9 @@ If the BOM comes in above \$500~CAD target, Stage~7 flags that the economics
 are compromised before the team invests in Milestone~2 tooling.
 Stage~7 also produces the \textbf{go/no-go recommendation}\index{go/no-go}
 for the next milestone and a list of risks that remain open.
+This recommendation is the prototype-evidence component of the Gate~3
+decision: the project proceeds to Stage~3 development only if the Stage~7
+compilation supports it.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Controlled Iteration Loop (Design\,$\leftrightarrow$\,Validate)}
@@ -332,8 +355,8 @@ cannot reproduce the fix reliably or explain it to a manufacturing partner.
         recording which criteria remain unmet.
 \end{enumerate}
 
-A useful framing: every pass through the loop should reduce uncertainty by
-answering a smaller sub-question. If you cannot name the sub-question before
+Every pass through the loop should reduce uncertainty by answering a smaller
+sub-question. If you cannot name the sub-question before
 you change something, you are not iterating --- you are guessing.
 
 \paragraph{In Practice.}
@@ -493,10 +516,28 @@ The team is deciding between two prototype options:
 \end{description}
 
 Applying the effort model with $k=2.5$:
+\begin{align}
+  E(4) &= k^4 = 2.5^4 = 39.1 \quad \text{(Option A effort)} \notag \\
+  E(2) &= k^2 = 2.5^2 = 6.25 \quad \text{(Option B effort)} \notag
+\end{align}
 \begin{equation}
   \label{eq:ch3-sorter-ratio}
   \frac{E(4)}{E(2)} = k^{4-2} = 2.5^2 = 6.25
 \end{equation}
+
+The fraction of Option~A's effort consumed \emph{after} the question
+is already answerable at Level~2 is:
+\begin{equation}
+  \label{eq:ch3-waste}
+  \frac{E(4) - E(2)}{E(4)} = \frac{39.1 - 6.25}{39.1} \approx 0.84
+  \quad (84\,\%).
+\end{equation}
+
+If a team's build estimate is $T$ weeks for Option~A, Option~B requires
+$T \times E(2)/E(4) = T/6.25$ weeks.
+For the 14-week Option~A estimate: $14/6.25 \approx 2.2$ weeks --- close
+to the stated 3-week Option~B estimate (the difference reflects real
+project overhead not captured by the model).
 
 Option~A requires $6.25\times$ the effort of Option~B.
 Now ask: does the central question require $f=4$?
@@ -515,6 +556,38 @@ If Option~B answers ``no'' --- the sort accuracy is 78\,\% at 6~items/min,
 or the MQTT latency is unacceptable on a congested network --- the team has
 lost 3~weeks, not 14.
 The cost of a wrong hypothesis is bounded by the fidelity choice.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Documentation Layer}
+\label{sec:ch3-documentation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Every stage of the Prototype Development Cycle produces a document.
+This is not administrative overhead --- it is the mechanism by which the
+prototype generates knowledge that survives beyond the build.
+A result that is not recorded is a result that will be repeated,
+at full cost, by the next engineer who faces the same question.
+
+\textbf{Stage~1} produces the specification and risk register.
+\textbf{Stage~2} produces the prototype plan with pass/fail criteria.
+\textbf{Stage~3} produces the architecture diagram and interface table.
+\textbf{Stage~4} produces schematics, firmware architecture notes, and
+the BOM; any deviation from the plan is noted here.
+\textbf{Stage~5} produces the build log: what was assembled, what
+changed from Stage~4, and photographs of key assembly steps.
+\textbf{Stage~6} produces the test procedure, raw data table, and the
+pass/fail verdict with reasoning.
+\textbf{Stage~7} produces the portfolio entry: test results, cost
+actuals, and the go/no-go recommendation.
+
+\index{documentation layer}
+The documentation is not assembled at the end of the milestone.
+It is produced at each stage, incrementally, so that the portfolio at
+Stage~7 requires only compilation, not reconstruction from memory.
+If you find yourself writing Stage~1 documentation in Week~11, the
+process has already failed.
+The portfolio you submit at Milestone~3 is exactly the set of documents
+you produced at each stage --- nothing more, nothing less.
 
 \paragraph{Common Pitfalls.}
 \begin{itemize}
@@ -564,8 +637,9 @@ The cost of a wrong hypothesis is bounded by the fidelity choice.
     \item Identify the most appropriate prototype type from \S3.4.
     \item State the fidelity level from \S3.5 and justify the choice in one
           sentence.
-    \item Identify one risk that would justify moving to a higher fidelity if
-          the initial result is inconclusive.
+    \item (c) If the PoC result is inconclusive --- accuracy is within spec at
+          some temperatures but not others --- describe one controlled iteration
+          step you would take at Stage~4 before changing the fidelity level.
   \end{enumerate}
 
   \item \textbf{(Applied --- multi-step)} A team estimates 20~weeks to build a
@@ -583,20 +657,32 @@ The cost of a wrong hypothesis is bounded by the fidelity choice.
 
 \subsection*{Try It Yourself}
 
-A firmware team is deciding how much prototype fidelity to invest in before
-committing to a custom RTOS port. They estimate the following parameters:
-$E_0 = 1$, $k = 3.0$.
+A firmware team must choose between two prototype options to validate
+their custom RTOS scheduler under worst-case interrupt load.
+Both options use $E_0 = 1$ and $k = 3.0$.
+
+\begin{description}
+  \item[Option~X --- Proof-of-concept ($f = 2$):] A minimal test harness
+    running the scheduler on target hardware with synthetic interrupt
+    injection. Estimated build time: 2~weeks.
+  \item[Option~Y --- Functional prototype ($f = 3$):] Full firmware stack
+    with all application tasks active, running the complete RTOS
+    configuration. Estimated build time: 9~weeks.
+\end{description}
 
 \begin{enumerate}
-  \item Using $E(f) = E_0 \cdot k^{\,f}$, compute the relative effort at each
-        fidelity level $f = 1, 2, 3, 4, 5$. Organise your results in a table.
-  \item Compute the ratio $E(5)/E(2)$. What does this number mean in
-        practical terms?
-  \item If the central question can be answered at $f = 2$, what percentage of
-        the Level-5 effort is wasted by building to $f = 5$ instead?
+  \item Compute $E(2)$ and $E(3)$ using $E(f) = E_0 \cdot k^{\,f}$.
+  \item Find the effort ratio $E(3)/E(2)$.
+  \item Compute the fraction of Option~Y effort consumed after the
+        question is already answerable at $f=2$
+        (use the formula from Equation~\ref{eq:ch3-waste}).
+  \item The central question is: ``Does the scheduler meet the 1~ms
+        worst-case interrupt latency under full task load?''
+        State in one sentence whether Option~X or Option~Y is the correct
+        choice and why, referencing the effort ratio.
 \end{enumerate}
 
-\noindent(Answers not provided --- work through the arithmetic before moving on.)
+\noindent(No answer key provided.)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{End-of-Chapter Artifact}
@@ -610,6 +696,8 @@ to your portfolio, stating: (1) the central question your Milestone~1
 prototype will answer, (2) the fidelity level you have chosen, and (3) a
 justification for that choice in terms of the question, the risk it retires,
 and the effort saved relative to the next higher fidelity level.
+This statement is your Milestone~1 prototype scope; submit it as the
+prototype-evidence component of your Gate~2 package in Week~4.
 
 \bigskip
 \noindent\textbf{Running-Example Statement (model your own on this):}
