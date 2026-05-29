@@ -43,8 +43,8 @@ and stops for review between chapters.
 | 5  | `chapters/05-architecture`          | System Architecture & Interface Definition | DONE | 3/3 | Stage-Gate opener; timing/power/RSS budgets; interface table; Gate 3 deliverable checklist; editor + instructor review applied |
 | 6  | `chapters/06-component-selection`   | Component Selection & Datasheet Literacy | DONE | 3/3 | Derating, margin, lifecycle, MTBF; D_f=0.917 failure flagged; Design action required callout; editor + instructor review applied |
 | 7  | `chapters/07-dfx`                   | Design for X | DONE | 3/3 | DFM/DFA/DFT/DFR; η_A + DPMO worked examples; DFX checklist artifact; editor + instructor review applied |
-| 8  | `chapters/08-ai`                    | AI in Prototyping: Capability & Risk | TODO | 0/2 | Tightened scope vs old Ch.6 |
-| 9  | `chapters/09-iot-robotics`          | IoT, Robotics & Safety as a Design Obligation | TODO | 0/3 | |
+| 8  | `chapters/08-ai`                    | AI in Prototyping: Capability & Risk | DONE | 2/2 | HITL cycle; eq:ch8-expected-cost; I²C pull-up worked example; AI use log format; editor + instructor review applied |
+| 9  | `chapters/09-iot-robotics`          | IoT, Robotics & Safety as a Design Obligation | DONE | 3/3 | IoT attack surfaces; duty-cycle power budget; SF worked example; eq:ch9-iavg, eq:ch9-tlife, eq:ch9-sf; editor + instructor review applied |
 | 10 | `chapters/10-planning`              | Planning & Schedule Management | TODO | 0/3 | |
 | 11 | `chapters/11-bom-procurement`       | Bill of Materials & Procurement | TODO | 0/3 | |
 | 12 | `chapters/12-economics`             | Low-Volume Production Economics | TODO | 0/3 | |
@@ -1241,7 +1241,9 @@ IoT connectivity + moving robotic element requiring safety design.
 | Architecture + interface budgets | Block diagram: Sensor Array → AI Inference Engine → MCU Firmware → Sort Actuator + Conveyor Controller + MQTT Broker → Cloud Dashboard. Timing: T_firmware = 1+2+2 = 5 ms (zero margin). Power budget: pending Ch.9. | Ch.5 |
 | Critical component selection (derating, lifecycle) | *(set in Ch.6)* | Ch.6 |
 | DFX checklist + $\eta_A$ | *(set in Ch.7)* | Ch.7 |
-| Power/battery numbers | *(set in Ch.9)* | Ch.9 |
+| AI use log | 6-field format: tool, prompt summary, output, verification method, result (accept/reject), E[C_err] computed. I²C pull-up worked example: p_err=0.15, C_consequence=$480, cost_verify=$40, E[C_err]=$72 → verify → AI rejected → 1.0 kΩ selected. | Ch.8 |
+| Power/battery numbers | MQTT sorter node: I_active=80 mA, I_sleep=0.05 mA, D=0.02, C_batt=2000 mAh → I_avg=1.649 mA, t_life=1212.9 h ≈ 50.5 days. Sensitivity: D=0.01 → 98.1 days. | Ch.9 |
+| Safety records | Sort-gate bracket: PLA, capacity=70 N, F_applied=13.24 N, SF=5.29 ≥ 2 → passes. E-stop: hardware NC relay in 12 V motor rail. Fail-safe: sort gate centred, conveyor stopped. | Ch.9 |
 | Schedule — key activities, critical path | *(set in Ch.10)* | Ch.10 |
 | BOM totals and $C_{\text{fixed}}$, $c_{\text{var}}$ | *(set in Ch.11–12)* | Ch.11–12 |
 | Target price $p$ | *(set in Ch.12)* | Ch.12 |
