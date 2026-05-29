@@ -42,7 +42,7 @@ Claude Code MUST follow this loop:
 |----|--------|-------|--------|---------|-------|
 | 1  | `chapters/01-overview`        | Overview: Prototypes, Products & the Business of Engineering | DONE | 4/4 | 4 figs; running-example business model + margin set; main.tex written |
 | 2  | `chapters/02-workflow`        | The Prototyping Mindset & the Workflow | DONE | 3/3 | 3 figs; effort-fidelity model; running-example question + fidelity set |
-| 3  | `chapters/03-prototype-vs-product` | Prototype vs. Product & Selective Prototyping | TODO | 0/2 | |
+| 3  | `chapters/03-prototype-vs-product` | Prototype vs. Product & Selective Prototyping | DONE | 2/2 | 2 figs; cost-of-change heuristic; subsystem classification table set |
 | 4  | `chapters/04-specifications`  | Specifications & Risk Prioritization | TODO | 0/3 | |
 | 5  | `chapters/05-architecture`    | System Architecture & Interface Definition | TODO | 0/3 | |
 | 6  | `chapters/06-ai`              | AI in Prototyping: Capability & Risk | TODO | 0/2 | |
@@ -819,7 +819,7 @@ safety design.
 | Firm context | 12-person engineering start-up; medium documentation weight; separate engineering and operations functions | Ch.1 |
 | Central question the prototype answers | Can a sub-\$500 CAD BOM sorter module achieve ≥95% sort accuracy at 6 items/min with reliable MQTT connectivity over standard Wi-Fi? | Ch.2 |
 | Chosen fidelity | Level 2 (proof-of-concept): breadboard electronics, 3D-printed mechanical bracket, firmware with data logging | Ch.2 |
-| Subsystem classification (prototype vs trust) | *(set in Ch.3)* | Ch.3 |
+| Subsystem classification (prototype vs trust) | Prototype: sort sensor, divert actuator, MCU+firmware, MQTT/Wi-Fi integration (4); Specify-and-trust: conveyor belt, 5V/12V PSU, structural frame (3) | Ch.3 |
 | Specification + risk ranking | *(set in Ch.4)* | Ch.4 |
 | Architecture + interface budgets | *(set in Ch.5)* | Ch.5 |
 | Power/battery numbers | *(set in Ch.7)* | Ch.7 |
