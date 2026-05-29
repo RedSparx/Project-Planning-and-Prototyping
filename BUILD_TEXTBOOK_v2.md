@@ -41,8 +41,8 @@ and stops for review between chapters.
 | 3  | `chapters/03-workflow`              | The Prototyping Mindset & the Workflow | DONE | 3/3 | Renumbered from Ch.2; Stage-Gate opener + Gate 2/3 body refs; §3.6 added; intrinsic/extrinsic defined; LOs fixed; Try It Yourself restructured |
 | 4  | `chapters/04-specifications`        | Specifications & Risk Prioritization | DONE | 3/3 | Stage-Gate opener added; LO4 added; eq:ch4-budget-sum added; Gate 2 refs added; Q4 + TIY fixed; editor + instructor review applied |
 | 5  | `chapters/05-architecture`          | System Architecture & Interface Definition | DONE | 3/3 | Stage-Gate opener; timing/power/RSS budgets; interface table; Gate 3 deliverable checklist; editor + instructor review applied |
-| 6  | `chapters/06-component-selection`   | Component Selection & Datasheet Literacy | TODO | 0/3 | New chapter |
-| 7  | `chapters/07-dfx`                   | Design for X | TODO | 0/3 | New chapter |
+| 6  | `chapters/06-component-selection`   | Component Selection & Datasheet Literacy | DONE | 3/3 | Derating, margin, lifecycle, MTBF; D_f=0.917 failure flagged; Design action required callout; editor + instructor review applied |
+| 7  | `chapters/07-dfx`                   | Design for X | DONE | 3/3 | DFM/DFA/DFT/DFR; η_A + DPMO worked examples; DFX checklist artifact; editor + instructor review applied |
 | 8  | `chapters/08-ai`                    | AI in Prototyping: Capability & Risk | TODO | 0/2 | Tightened scope vs old Ch.6 |
 | 9  | `chapters/09-iot-robotics`          | IoT, Robotics & Safety as a Design Obligation | TODO | 0/3 | |
 | 10 | `chapters/10-planning`              | Planning & Schedule Management | TODO | 0/3 | |
