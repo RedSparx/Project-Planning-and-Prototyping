@@ -118,6 +118,11 @@ textbook/
   8. **Summary** + one-paragraph transition to the next chapter.
 - **LaTeX conventions:**
   - `\chapter{}`, `\section{}`, `\subsection{}` (Sparkle styles them).
+  - **Maximum heading depth is `\subsection{}`.** Never use `\subsubsection{}` or
+    `\paragraph{}` as a structural heading. If a topic feels like it needs a third
+    level, either promote it to a `\subsection{}` or fold it into the prose of its
+    parent subsection. `\paragraph{}` is permitted **only** for the named callout
+    lead-ins (`In Practice.`, `Common Pitfalls.`) and must never carry body structure.
   - Display equations in `equation`/`align`; inline math with `$...$`.
   - Bold the **first** use of each defined term.
   - Reference the seven-stage workflow by stage number consistently.
