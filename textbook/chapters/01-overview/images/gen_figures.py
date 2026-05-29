@@ -108,16 +108,16 @@ def make_fig01_pipeline():
 # FIG 02 — Two-track course map (Theory + Lab/Practice) over 12 weeks
 # ═══════════════════════════════════════════════════════════════════════════════
 def make_fig02_course_map():
-    fig, ax = plt.subplots(figsize=(10, 4.0))
+    fig, ax = plt.subplots(figsize=(11, 3.0))
     ax.set_xlim(0.5, 12.5)
-    ax.set_ylim(-0.3, 5.2)
+    ax.set_ylim(-0.3, 4.2)
     ax.axis("off")
     mpl.rcParams["axes.grid"] = False
 
-    # Track centers
-    THEORY_Y = 3.7
-    LAB_Y    = 1.6
-    ROW_H    = 0.85
+    # Track centers — tightened vertical spacing to fit in 3.0 in
+    THEORY_Y = 3.0
+    LAB_Y    = 1.3
+    ROW_H    = 0.75
 
     # Track background bands
     for cy, label in [(THEORY_Y, "Theory\nTrack"), (LAB_Y, "Lab /\nPractice")]:
@@ -224,9 +224,9 @@ def make_fig02_course_map():
                 multialignment="center")
 
     # Track labels on left
-    ax.text(0.55, THEORY_Y + ROW_H / 2 + 0.05, "THEORY", ha="center",
+    ax.text(0.55, THEORY_Y + ROW_H / 2 + 0.03, "THEORY", ha="center",
             va="bottom", fontsize=6.5, color="0.4", fontstyle="italic")
-    ax.text(0.55, LAB_Y + ROW_H / 2 + 0.05, "LAB", ha="center",
+    ax.text(0.55, LAB_Y + ROW_H / 2 + 0.03, "LAB", ha="center",
             va="bottom", fontsize=6.5, color="0.4", fontstyle="italic")
 
     fig.tight_layout()
@@ -237,7 +237,7 @@ def make_fig02_course_map():
 # FIG 03 — Firm-size spectrum vs process formality & documentation weight
 # ═══════════════════════════════════════════════════════════════════════════════
 def make_fig03_firm_spectrum():
-    fig, ax = plt.subplots(figsize=(7, 3.6))
+    fig, ax = plt.subplots(figsize=(7, 2.8))
 
     firms = ["Small /\nStart-up", "Medium\n(SME)", "Large\nEnterprise"]
     metrics = [
@@ -293,10 +293,10 @@ def make_fig04_business_models():
         "business_models",
         format="pdf",
         graph_attr=dict(
-            rankdir="TB",
+            rankdir="LR",
             splines="ortho",
-            nodesep="0.35",
-            ranksep="0.55",
+            nodesep="0.12",
+            ranksep="0.40",
             bgcolor="white",
             fontname="Helvetica",
             fontsize="11",
@@ -306,8 +306,10 @@ def make_fig04_business_models():
             style="filled,rounded",
             fontname="Helvetica",
             fontsize="10",
-            margin="0.12,0.06",
+            margin="0.08,0.04",
             penwidth="1.2",
+            width="1.2",
+            height="0.30",
         ),
         edge_attr=dict(
             arrowsize="0.7",

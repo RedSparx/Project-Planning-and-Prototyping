@@ -57,7 +57,7 @@ Reliability, not learning, is the governing criterion.
 This distinction shapes every design decision that follows.
 Consider the two objects side by side across four dimensions.
 
-\paragraph{Goals.}
+\subsubsection{Goals}
 A prototype's goal is epistemic: you want to know something you do not yet
 know.
 Is the ML inference fast enough on the target MCU?
@@ -65,7 +65,7 @@ Does the servo divert reliably at 6~items per minute under a 200~g load?
 A product's goal is operational: deliver the specified function to the customer
 on schedule, within cost, and without failure in the field.
 
-\paragraph{Standards.}
+\subsubsection{Standards}
 Prototypes are typically exempt from --- or at least not yet subject to ---
 formal certification requirements.
 You do not CE-mark a breadboard.
@@ -76,7 +76,7 @@ For your sorting subsystem shipped under a Hardware-as-a-Service (HaaS) model,
 this means your final product must meet the standards of a production floor,
 not a university lab.
 
-\paragraph{Lifecycle obligations.}
+\subsubsection{Lifecycle Obligations}
 A prototype has no lifecycle obligation beyond the experiment it supports.
 When you have your answer, you can dismantle it.
 A product carries a service life: firmware updates, spare parts, warranty
@@ -84,7 +84,7 @@ claims, end-of-life disposal.
 Designing for lifecycle obligations adds cost and complexity that is
 inappropriate --- and wasteful --- to impose on a prototype.
 
-\paragraph{Failure modes.}
+\subsubsection{Failure Modes}
 Prototype failure is valuable.
 If the sensor field of view is too narrow and items slide past unclassified,
 you have learned exactly what you needed to learn, cheaply.
@@ -173,7 +173,7 @@ decision can be revisited if requirements change.
   \label{fig:ch3-selective-decision}
 \end{figure}
 
-\subsection*{What ``Specify-and-Trust'' Actually Means}
+\subsection{What ``Specify-and-Trust'' Actually Means}
 
 Choosing to specify-and-trust is not the same as choosing to ignore.
 It means you invest your engineering effort in writing a precise requirement
@@ -214,7 +214,7 @@ and systematically --- is the cost of change.
 Design flaws do not get cheaper to fix as a project progresses.
 They get dramatically more expensive.
 
-\subsection*{The Cost-of-Change Heuristic}
+\subsection{The Cost-of-Change Heuristic}
 
 Let $s$ denote the \textbf{project stage}\index{project stage} as an integer:
 
@@ -245,13 +245,22 @@ The exponent reflects the compounding difficulty: each stage adds committed
 procurement, tooling, testing infrastructure, and --- in production ---
 physical units that must be reworked or scrapped.
 
+The saving from detecting a flaw at an earlier stage $s_1$ rather than a later
+stage $s_2$ is:
+\begin{equation}
+  \Delta C(s_1, s_2) = C_0\,\bigl(10^{s_2} - 10^{s_1}\bigr).
+  \label{eq:ch3-delta-cost}
+\end{equation}
+For example, catching a flaw at Design ($s_1=1$) rather than Production ($s_2=3$):
+$\Delta C(1,3) = C_0\,(10^3 - 10^1) = 990\,C_0$.
+
 This heuristic originates in empirical studies of software and hardware
 projects from the 1970s onward and has been reproduced across aerospace,
 consumer electronics, and industrial systems.
 The exact multiplier varies by industry; the order-of-magnitude-per-stage
 relationship is robust.
 
-\subsection*{Worked Table}
+\subsection{Worked Table}
 
 Set $C_0 = \$50$~CAD, roughly one engineering hour at a start-up billing rate.
 
@@ -302,7 +311,7 @@ which makes the exponential growth viscerally clear.
   \label{fig:ch3-cost-of-change}
 \end{figure}
 
-\subsection*{Implications for Prototype Targeting}
+\subsection{Implications for Prototype Targeting}
 
 Equation~\eqref{eq:ch3-cost-of-change} does not tell you which subsystem to
 prototype.
@@ -357,7 +366,7 @@ candidates for specify-and-trust when all of the following hold:
 When all four conditions hold, you can write a requirement, confirm the
 datasheet match, log the decision, and redirect your prototype budget.
 
-\subsection*{Writing the Requirement}
+\subsection{Writing the Requirement}
 
 ``Specify and trust'' begins with a clear requirement, not with browsing a
 catalogue.
@@ -411,7 +420,7 @@ connectivity?
 The Level~2 (proof-of-concept) fidelity decision commits you to breadboard
 electronics, a 3D-printed bracket, and firmware with data logging.
 
-\subsection*{Subsystem Classification Table}
+\subsection{Subsystem Classification Table}
 
 Table~\ref{tab:ch3-classification} applies the three criteria to each
 subsystem and records the resulting decision.
@@ -473,12 +482,12 @@ belt, PSU, structural frame).
 This classification feeds directly into the risk register you will build in
 Chapter~4.
 
-\subsection*{Cost-of-Change Calculation: Two Representative Flaws}
+\subsection{Cost-of-Change Calculation: Two Representative Flaws}
 
 Apply Equation~\eqref{eq:ch3-cost-of-change} to two concrete flaws that could
 reasonably affect the sorting subsystem.
 
-\paragraph{Flaw~A: Sort sensor field of view too narrow.}
+\subsubsection{Flaw~A: Sort Sensor Field of View Too Narrow}
 The camera is mounted at a fixed height with a fixed lens.
 During prototype testing you discover that items wider than 80~mm pass
 partially outside the field of view, causing the ML model to misclassify them.
@@ -506,15 +515,17 @@ minimum 6-week lead time), re-certify the modified assembly, rework or scrap
 At a unit BOM of \$480 and 50~units, scrap alone approaches \$24{,}000;
 the tooling and re-certification absorb the remainder.
 
-\paragraph{Saving from early detection.}
+\subsubsection{Saving from Early Detection}
 \begin{align}
   \Delta C &= C_{\text{change}}(3) - C_{\text{change}}(1) \notag \\
            &= \$50{,}000 - \$500 \notag \\
            &= \$49{,}500
   \label{eq:ch3-saving-flaw-a}
 \end{align}
+Using Equation~\ref{eq:ch3-delta-cost} directly:
+$\Delta C(1,3) = \$50\,(10^3 - 10^1) = \$50 \times 990 = \$49{,}500$.
 
-\paragraph{Flaw~B: MQTT reconnection loop blocks sensor pipeline.}
+\subsubsection{Flaw~B: MQTT Reconnection Loop Blocks Sensor Pipeline}
 The firmware's Wi-Fi reconnection routine holds a mutex that the sensor
 sampling task also requires.
 On reconnect, sensor sampling pauses for up to 3~seconds, during which items
@@ -546,11 +557,36 @@ representative production-floor RF conditions, customer notification, potential
 SLA penalty under the HaaS contract.
 
 \medskip
+\noindent Using Equation~\ref{eq:ch3-delta-cost} for Flaw~B:
+$\Delta C(1,3) = \$50\,(10^3 - 10^1) = \$50 \times 990 = \$49{,}500$.
+
+\medskip
 Both calculations reinforce the same conclusion: the most economically
 rational place to discover and fix design flaws is as early as possible.
 The Level~2 proof-of-concept prototype, built for a few hundred dollars in
 components and a few weeks of engineering time, is the instrument that makes
 that early discovery possible.
+
+\subsection*{Try It Yourself}
+
+A custom motor-driver PCB has a layout error: the via drill size is incompatible
+with the contract manufacturer's minimum drill specification.  The baseline fix
+cost at the Concept stage is $C_0 = \$80$~CAD.
+
+\begin{enumerate}
+  \item Using $C(s) = C_0 \cdot 10^{\,s}$, compute the cost to fix this error at
+        each of the four stages: Concept ($s=0$), Design ($s=1$), Build ($s=2$),
+        and Production ($s=3$).
+  \item Using Equation~\ref{eq:ch3-delta-cost}, compute $\Delta C(1,\,3)$ ---
+        the saving from catching the flaw at Design rather than Production.
+  \item Apply the decision flow in Figure~\ref{fig:ch3-selective-decision} to the
+        motor-driver PCB as a subsystem. Is it ``novel or unprecedented''?
+        ``High uncertainty in performance''? ``High consequence if it fails''?
+        State a decision (Prototype or Specify-and-trust) with a one-sentence
+        justification.
+\end{enumerate}
+
+\noindent(Answers not provided --- work through the arithmetic before moving on.)
 
 \paragraph{In Practice.}
 At the HaaS pricing of \$1{,}200~CAD per unit and a gross margin of 60\%, each
@@ -614,6 +650,56 @@ Prototype investment is not a cost; it is margin protection.
         change.
 \end{description}
 
+
+\section*{Review Questions}
+\addcontentsline{toc}{section}{Review Questions}
+
+\begin{enumerate}
+
+  \item \textbf{(Conceptual)} State the three criteria used to place a subsystem
+  in the ``Prototype it'' column of the classification table.
+  Give one example of a real subsystem that satisfies all three criteria, and one
+  that satisfies none.
+
+  \item \textbf{(Conceptual)} The cost-of-change figure uses a logarithmic
+  $y$-axis. Explain why a linear scale would be misleading for this data, and
+  describe what the log-scale shape implies about where to invest prototype effort
+  in a project timeline.
+
+  \item \textbf{(Applied --- calculation)} The baseline fix cost for a firmware
+  bug is $C_0 = \$120$~CAD.
+  \begin{enumerate}
+    \item Using $C(s) = C_0 \cdot 10^{\,s}$, compute the fix cost at all four
+          stages.
+    \item Using Equation~\ref{eq:ch3-delta-cost}, compute $\Delta C(1,\,3)$.
+    \item A triage decision moves the fix from Production ($s=3$) back to Design
+          ($s=1$). Express the saving as a multiple of $C_0$.
+  \end{enumerate}
+
+  \item \textbf{(Applied --- multi-step)} The baseline fix cost is $C_0 = \$60$~CAD.
+  A defect is discovered at the Build stage ($s=2$).
+  \begin{enumerate}
+    \item Compute the cost to fix it at $s=2$.
+    \item A redesign review triggers an earlier fix at $s=1$ (Design).
+          Compute the cost at $s=1$.
+    \item Compute $\Delta C(1,\,2)$ using Equation~\ref{eq:ch3-delta-cost}.
+    \item How many ``baseline hours'' (at $C_0$ each) does the earlier trigger save?
+  \end{enumerate}
+
+  \item \textbf{(Applied --- classification)} Using the decision flow in
+  Figure~\ref{fig:ch3-selective-decision}, classify each of the following
+  subsystems for a wearable ECG monitor. For each, answer the three questions
+  (novel? uncertain? high consequence?) and state the decision with a one-line
+  justification.
+  \begin{enumerate}
+    \item Off-the-shelf Bluetooth SoC (Nordic nRF52840, standard reference design).
+    \item Custom analog front-end for ECG signal acquisition.
+    \item Standard 500~mAh LiPo battery cell.
+    \item Custom dry electrode adhesive geometry (new material, no prior data).
+    \item USB-C charging circuit (TI BQ25619 reference design, datasheet verified).
+  \end{enumerate}
+
+\end{enumerate}
 
 % ============================================================
 \section*{End-of-Chapter Artifact: Subsystem Classification Table}

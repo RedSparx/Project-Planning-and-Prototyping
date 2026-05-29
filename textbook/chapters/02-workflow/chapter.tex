@@ -425,7 +425,7 @@ roughly $k$ times the total effort of the step below it, because higher
 fidelity demands tighter tolerances, more sophisticated tooling, more thorough
 testing, and more documentation.
 
-\subsubsection*{Worked Example: Effort Table}
+\subsubsection{Effort Table}
 
 Set $E_0 = 1$ and $k = 2.5$ as representative values.
 Table~\ref{tab:ch2-effort} shows the resulting effort at each level.
@@ -525,6 +525,70 @@ The cost of a wrong hypothesis is bounded by the fidelity choice.
     zero additional information --- it only consumes schedule and budget.
     Match fidelity to the question; resist the instinct to impress.
 \end{itemize}
+
+\section*{Review Questions}
+\addcontentsline{toc}{section}{Review Questions}
+
+\begin{enumerate}
+
+  \item \textbf{(Conceptual)} List the seven stages of the Prototype Development
+  Cycle in order. For Stage~1 and Stage~6, state the primary output that stage
+  produces.
+
+  \item \textbf{(Conceptual)} Distinguish \textbf{intrinsic value} from
+  \textbf{extrinsic value} in the context of a prototype. Which type does a
+  proof-of-concept maximise, and why does that make it appropriate for answering
+  a central technical question?
+
+  \item \textbf{(Applied --- calculation)} Using $E(f) = E_0 \cdot k^{\,f}$ with
+  $E_0 = 1$ and $k = 3.0$:
+  \begin{enumerate}
+    \item Compute $E(f)$ for $f = 1, 2, 3, 4, 5$.
+    \item What is the ratio $E(4)/E(2)$?
+    \item If a question is answered at $f = 2$, what fraction of the Level-4
+          effort is saved?
+  \end{enumerate}
+
+  \item \textbf{(Applied --- decision)} A team must verify that a custom MEMS
+  pressure sensor achieves $\pm 0.5$~Pa accuracy when integrated with their
+  MCU at $-20\,^{\circ}$C.
+  \begin{enumerate}
+    \item Identify the most appropriate prototype type from \S2.4.
+    \item State the fidelity level from \S2.5 and justify the choice in one
+          sentence.
+    \item Identify one risk that would justify moving to a higher fidelity if
+          the initial result is inconclusive.
+  \end{enumerate}
+
+  \item \textbf{(Applied --- multi-step)} A team estimates 20~weeks to build a
+  pre-production prototype ($f = 5$) at a weekly cost of \$3{,}500~CAD.
+  Using $k = 2.5$, $E_0 = 1$:
+  \begin{enumerate}
+    \item Compute $E(2)$ and $E(5)$.
+    \item What fraction of the 20-week effort corresponds to $f = 2$?
+    \item How many weeks does the PoC take (round to one decimal place)?
+    \item How much money is saved by stopping at $f = 2$ if the question is
+          answered there?
+  \end{enumerate}
+
+\end{enumerate}
+
+\subsection*{Try It Yourself}
+
+A firmware team is deciding how much prototype fidelity to invest in before
+committing to a custom RTOS port. They estimate the following parameters:
+$E_0 = 1$, $k = 3.0$.
+
+\begin{enumerate}
+  \item Using $E(f) = E_0 \cdot k^{\,f}$, compute the relative effort at each
+        fidelity level $f = 1, 2, 3, 4, 5$. Organise your results in a table.
+  \item Compute the ratio $E(5)/E(2)$. What does this number mean in
+        practical terms?
+  \item If the central question can be answered at $f = 2$, what percentage of
+        the Level-5 effort is wasted by building to $f = 5$ instead?
+\end{enumerate}
+
+\noindent(Answers not provided --- work through the arithmetic before moving on.)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{End-of-Chapter Artifact}

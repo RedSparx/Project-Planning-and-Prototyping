@@ -107,22 +107,41 @@ textbook/
   working engineer explaining the trade to a capable junior. Institutional scaffolding
   (course codes, competencies, grading) **never appears on the page** — it is implicit.
 - **Length:** 3,000–5,000 words of body per chapter.
+- **Inter-chapter flow (editorial rule):**
+  - The **opening hook** must name what the previous chapter delivered and the gap this
+    chapter fills. Pattern: "Chapter~N established [X]. That left open [Y] — which this
+    chapter addresses." Do not repeat prior content; build on it.
+  - The **closing transition** must name the artifact just produced and state exactly
+    what the next chapter does with it. Pattern: "You now have [artifact]. Chapter~N+1
+    takes [artifact] as its starting point and [does Z]."
+  - Cross-references always use `Chapter~N` (never "the previous chapter") so chapters
+    are navigable out of order.
 - **Every chapter contains, in order:**
-  1. Opening hook tying the chapter to its place in the workflow.
+  1. Opening hook tying the chapter to its place in the workflow (see flow rule above).
   2. Numbered **learning objectives** (measurable verbs).
   3. Body sections per the brief.
-  4. At least one **worked example** with explicit arithmetic (show the numbers).
+  4. At least one **worked example** with explicit step-by-step arithmetic (show every
+     intermediate value). Immediately after, a **"Try It Yourself"** block: a different
+     scenario with different numbers, same method. State what the reader must compute;
+     do not give the answer.
   5. **In Practice** callout(s) — short real scenarios.
   6. **Common Pitfalls** — misconceptions to dismantle.
-  7. **End-of-chapter artifact** the reader produces (feeds their portfolio).
-  8. **Summary** + one-paragraph transition to the next chapter.
+  7. **Review Questions** (`\section*{Review Questions}`), 4–6 numbered questions:
+     - ≥ 2 conceptual (recall / explain / distinguish / justify).
+     - ≥ 2 applied, calculation-based (compute / classify / decide) using numbers
+       **different** from the worked example so students cannot copy directly.
+     - At least one question per chapter must require multi-step arithmetic.
+     - Cite the relevant equation or figure where helpful (e.g. "Use
+       Equation~\ref{eq:...}").
+  8. **End-of-chapter artifact** the reader produces (feeds their portfolio).
+  9. **Summary** + one-paragraph transition to the next chapter (see flow rule above).
 - **LaTeX conventions:**
-  - `\chapter{}`, `\section{}`, `\subsection{}` (Sparkle styles them).
-  - **Maximum heading depth is `\subsection{}`.** Never use `\subsubsection{}` or
-    `\paragraph{}` as a structural heading. If a topic feels like it needs a third
-    level, either promote it to a `\subsection{}` or fold it into the prose of its
-    parent subsection. `\paragraph{}` is permitted **only** for the named callout
-    lead-ins (`In Practice.`, `Common Pitfalls.`) and must never carry body structure.
+  - `\chapter{}`, `\section{}`, `\subsection{}`, `\subsubsection{}` (Sparkle styles
+    them). **Maximum heading depth is `\subsubsection{}`** — four levels:
+    `\chapter` → `\section` → `\subsection` → `\subsubsection`.
+  - `\paragraph{}` is reserved **solely** for the two named callout lead-ins
+    (`In Practice.` and `Common Pitfalls.`) and must **never** carry structural
+    content. Any named sub-topic or item that needs a heading uses `\subsubsection{}`.
   - Display equations in `equation`/`align`; inline math with `$...$`.
   - Bold the **first** use of each defined term.
   - Reference the seven-stage workflow by stage number consistently.
@@ -144,18 +163,27 @@ All figures are **publication-quality black-and-white**. No color.
   hatching (`/`, `\\`, `x`, `.`, `+`). Never use color as the only differentiator.
 - Font: sans-serif, **≥ 9 pt** effective size at final print width. Assume figures print
   at ~0.85 textwidth (~13 cm). Avoid tiny tick labels.
+- **Figure height: 2–3 inches in the printed document.** Figures are included at
+  `width=0.85\textwidth` (~4.7 in). Use `figsize=(W, H)` with **H ≤ 3.0** and aspect
+  ratio W/H ≥ 1.6 (landscape). Vertical/portrait flow diagrams must be redesigned as
+  horizontal left-to-right flows to meet this constraint. Never produce a figure taller
+  than 3 inches.
 - Line weights ≥ 1.0 pt; markers large enough to read.
 - Label every axis with units. Subtle grid only (`alpha=0.3`) where it aids reading.
 - Save the LaTeX asset as **vector PDF**: `images/fig_NN_name.pdf`.
 
-**The 200 dpi readability check (do not skip)**
-For every figure, also export a raster proof and inspect it:
-1. Save `images/fig_NN_name.png` at **200 dpi**.
-2. **Open/view the PNG** and check for: overlapping labels, clipped text, lines too thin
-   to read, insufficient gray contrast, illegible legends, crowded nodes.
-3. If any issue is found, fix the figure script and regenerate **both** files. Repeat
-   until the 200 dpi proof is clean.
-4. Only then reference the PDF in `chapter.tex`.
+**The 200 dpi readability check (mandatory — do not skip)**
+For every figure, export the PNG and inspect it with the Read tool. **Explicitly verify
+each of the following before declaring a figure done:**
+1. No label, tick, or legend text is clipped or runs outside the figure boundary.
+2. **No arrow, line, or box overlaps or touches any text label** — this is the most
+   common failure; check every arrow tip and every box edge against nearby text.
+3. No two text elements overlap each other.
+4. All lines and arrows are ≥ 1 pt visible weight.
+5. All text appears ≥ 9 pt at final print size.
+6. Sufficient gray contrast between all adjacent filled regions.
+If any item fails, fix the script and regenerate **both** PDF and PNG. Repeat until
+all six checks pass. Only then reference the PDF in `chapter.tex`.
 
 **Reusable grayscale matplotlib preamble**
 ```python
