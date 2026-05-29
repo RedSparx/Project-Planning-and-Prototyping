@@ -40,7 +40,7 @@ and stops for review between chapters.
 | 2  | `chapters/02-stagegate-kano`        | Product Development & the Stage-Gate Model | DONE | 4/4 | New chapter; Stage-Gate + Kano; CS/DS worked example; TIY + Review Questions added; editor + instructor review applied |
 | 3  | `chapters/03-workflow`              | The Prototyping Mindset & the Workflow | DONE | 3/3 | Renumbered from Ch.2; Stage-Gate opener + Gate 2/3 body refs; §3.6 added; intrinsic/extrinsic defined; LOs fixed; Try It Yourself restructured |
 | 4  | `chapters/04-specifications`        | Specifications & Risk Prioritization | DONE | 3/3 | Stage-Gate opener added; LO4 added; eq:ch4-budget-sum added; Gate 2 refs added; Q4 + TIY fixed; editor + instructor review applied |
-| 5  | `chapters/05-architecture`          | System Architecture & Interface Definition | TODO | 0/3 | |
+| 5  | `chapters/05-architecture`          | System Architecture & Interface Definition | DONE | 3/3 | Stage-Gate opener; timing/power/RSS budgets; interface table; Gate 3 deliverable checklist; editor + instructor review applied |
 | 6  | `chapters/06-component-selection`   | Component Selection & Datasheet Literacy | TODO | 0/3 | New chapter |
 | 7  | `chapters/07-dfx`                   | Design for X | TODO | 0/3 | New chapter |
 | 8  | `chapters/08-ai`                    | AI in Prototyping: Capability & Risk | TODO | 0/2 | Tightened scope vs old Ch.6 |
@@ -1238,7 +1238,7 @@ IoT connectivity + moving robotic element requiring safety design.
 | Central question the prototype answers | *(set in Ch.3)* | Ch.3 |
 | Chosen fidelity | *(set in Ch.3)* | Ch.3 |
 | Specification + RPN ranking | *(set in Ch.4)* | Ch.4 |
-| Architecture + interface budgets | *(set in Ch.5)* | Ch.5 |
+| Architecture + interface budgets | Block diagram: Sensor Array → AI Inference Engine → MCU Firmware → Sort Actuator + Conveyor Controller + MQTT Broker → Cloud Dashboard. Timing: T_firmware = 1+2+2 = 5 ms (zero margin). Power budget: pending Ch.9. | Ch.5 |
 | Critical component selection (derating, lifecycle) | *(set in Ch.6)* | Ch.6 |
 | DFX checklist + $\eta_A$ | *(set in Ch.7)* | Ch.7 |
 | Power/battery numbers | *(set in Ch.9)* | Ch.9 |
