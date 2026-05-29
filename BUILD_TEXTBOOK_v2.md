@@ -37,9 +37,9 @@ and stops for review between chapters.
 | Ch | Folder | Title | Status | Figures | Notes |
 |----|--------|-------|--------|---------|-------|
 | 1  | `chapters/01-overview`              | Overview: Prototypes, Products & the Business of Engineering | DONE | 4/4 | Stage-Gate fwd ref §1.3; IP fwd ref §1.7; fig_02_course_map regenerated (17 chs + Stage-Gate bands) |
-| 2  | `chapters/02-stagegate-kano`        | Product Development & the Stage-Gate Model | TODO | 0/4 | New chapter; absorbs old Ch.3 content |
+| 2  | `chapters/02-stagegate-kano`        | Product Development & the Stage-Gate Model | DONE | 4/4 | New chapter; Stage-Gate + Kano; CS/DS worked example; TIY + Review Questions added; editor + instructor review applied |
 | 3  | `chapters/03-workflow`              | The Prototyping Mindset & the Workflow | DONE | 3/3 | Renumbered from Ch.2; Stage-Gate opener + Gate 2/3 body refs; §3.6 added; intrinsic/extrinsic defined; LOs fixed; Try It Yourself restructured |
-| 4  | `chapters/04-specifications`        | Specifications & Risk Prioritization | REDO | 0/3 | Renumbered from old Ch.4; add Stage-Gate phase label opener |
+| 4  | `chapters/04-specifications`        | Specifications & Risk Prioritization | DONE | 3/3 | Stage-Gate opener added; LO4 added; eq:ch4-budget-sum added; Gate 2 refs added; Q4 + TIY fixed; editor + instructor review applied |
 | 5  | `chapters/05-architecture`          | System Architecture & Interface Definition | TODO | 0/3 | |
 | 6  | `chapters/06-component-selection`   | Component Selection & Datasheet Literacy | TODO | 0/3 | New chapter |
 | 7  | `chapters/07-dfx`                   | Design for X | TODO | 0/3 | New chapter |
@@ -1233,8 +1233,8 @@ IoT connectivity + moving robotic element requiring safety design.
 |-------|-------|--------|
 | Business model | *(set in Ch.1)* | Ch.1 |
 | Firm context | *(set in Ch.1)* | Ch.1 |
-| Kano feature classification | *(set in Ch.2)* | Ch.2 |
-| Prototype scope (from Kano) | *(set in Ch.2)* | Ch.2 |
+| Kano feature classification | Sort accuracy CS=0.60/\|DS\|=0.40 → Performance; MQTT CS=0.73/\|DS\|=0.20 → Delighter; Conveyor belt CS=0.27/\|DS\|=0.80 → Threshold; Housing CS=0.20/\|DS\|=0.27 → Indifferent; AI fault detection CS=0.80/\|DS\|=0.17 → Delighter | Ch.2 |
+| Prototype scope (from Kano) | Build: sort-accuracy pipeline, MQTT end-to-end path, AI inference engine. Specify: conveyor belt. Functional-minimum only: 3D-printed housing. | Ch.2 |
 | Central question the prototype answers | *(set in Ch.3)* | Ch.3 |
 | Chosen fidelity | *(set in Ch.3)* | Ch.3 |
 | Specification + RPN ranking | *(set in Ch.4)* | Ch.4 |

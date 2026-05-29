@@ -5,15 +5,24 @@
 \chapter{Specifications \& Risk Prioritization}
 \label{ch:specifications}
 
-Chapter~3 produced two things: a precisely framed central question and a justified fidelity choice.
-Those outputs identify \emph{what} must be true for the prototype to succeed, but they do not yet say \emph{how true} is true enough --- that gap is what a specification fills.
-This chapter shows how to convert that central question into measurable, testable requirements and a ranked risk register --- the Stage-Gate Stage~2 Scoping deliverables --- by using two complementary tools: a simple risk equation and an FMEA-style Risk Priority Number.
+\paragraph{Where this fits.}
+This chapter produces the core deliverable of Stage-Gate Stage~2
+(Scoping) --- the product specification and risk register that justify a
+Go decision at Gate~2.
+The central question and fidelity statement you produced in Chapter~3
+define the \emph{goal}; the specification turns that goal into
+measurable, testable requirements, and the risk register ranks the
+unknowns the prototype must resolve before Gate~2 can be passed.
+
+The central question you defined in Chapter~3 identifies the goal; this chapter supplies the standard for success --- converting that goal into measurable, testable requirements and a ranked risk register using two complementary tools: a simple risk equation and an FMEA Risk Priority Number.
 
 By the end of this chapter you will be able to:
 \begin{enumerate}
   \item write measurable, testable requirements that can unambiguously pass or fail;
-  \item separate requirements (the \emph{what}) from design decisions (the \emph{how}); and
-  \item build and defend a risk-priority ranking that guides prototype focus.
+  \item separate requirements (the \emph{what}) from design decisions (the \emph{how});
+  \item build and defend a risk-priority ranking that guides prototype focus; and
+  \item identify the critical unknown in a set of open assumptions and justify which prototype experiment must be run first.
+
 \end{enumerate}
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -124,7 +133,7 @@ Move it to the design rationale section and restate the requirement in terms of 
 % ─────────────────────────────────────────────────────────────────────────────
 
 \index{risk-driven prioritization}Once requirements exist, the team must decide which risks — failures to meet those requirements — deserve the most engineering attention.
-Without a principled ranking, teams either (a) work on the most visible problem rather than the most dangerous one, or (b) try to mitigate everything simultaneously and mitigate nothing well.
+Without a principled ranking, you either chase the most visible problem rather than the most dangerous one, or try to mitigate everything simultaneously and mitigate nothing well.
 
 \subsection{The Basic Risk Equation}
 \label{subsec:ch4-risk-eq}
@@ -156,9 +165,8 @@ Figure~\ref{fig:ch4-risk-matrix} shows a probability–consequence matrix that m
 \subsection{Limitations of the Two-Factor Model}
 \label{subsec:ch4-risk-limits}
 
-Equation~\eqref{eq:ch4-risk} is fast and easy to communicate to non-technical stakeholders, but it conflates two distinct ideas: the \emph{probability} that a failure reaches the user and the \emph{team's ability to detect} a failure before it causes harm.
-A failure mode that is severe and somewhat likely but detectable in bench testing is far less dangerous than one that is equally severe but invisible until field deployment.
-Section~\ref{sec:ch4-fmea} introduces the FMEA Risk Priority Number, which adds detection as a third factor.
+Equation~\eqref{eq:ch4-risk} is fast to communicate but conflates two distinct ideas: the probability that a failure occurs and the team's ability to detect it before it reaches the user.
+Section~\ref{sec:ch4-fmea} adds detection as a third factor.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{FMEA-Style Ranking (RPN)}
@@ -189,6 +197,7 @@ Unlike the two-factor risk score $R$, the RPN captures the value of test coverag
 \paragraph{In Practice.}
 Industry FMEA tables typically flag RPN $\geq 100$ as requiring a documented corrective action, and RPN $\geq 200$ as requiring a design change before release.
 For a student prototype, a lighter threshold — flag RPN $\geq 80$ — is appropriate, because prototype runs are short and failures are recoverable.
+These are the failure modes you must address before your Gate~2 submission.
 
 \subsection{Scale Anchors}
 \label{subsec:ch4-scale-anchors}
@@ -274,6 +283,11 @@ The most instructive conversion is ``fast'':
         The actuator must fire within that window.
   \item \textbf{Step 3 — allocate the budget:}
         Budget allocation: sensor read 1~ms, classifier 2~ms, actuator command 2~ms, margin 995~ms.
+        \begin{equation}
+          \label{eq:ch4-budget-sum}
+          t_{\text{firmware}} = 1\,\text{ms} + 2\,\text{ms} + 2\,\text{ms} = 5\,\text{ms}.
+        \end{equation}
+        The remaining $1{,}000 - 5 = 995\,\text{ms}$ is dwell-time margin before the next item enters the gate.
         Conservatively, the end-to-end firmware latency budget is $\leq$5~ms.
         At a 10~kS/s ADC rate, the sensor delivers $10{,}000$ samples per second; one classification frame uses 10 samples, costing $10/10{,}000 = 1\,\text{ms}$ — within budget.
   \item \textbf{Measurable requirement:} ``The MCU firmware shall process one classification event (sensor read + classification + actuator command) within $\leq$5~ms, measured from sensor-trigger interrupt to actuator-enable GPIO, at a sustained rate of $\geq$10~kS/s sensor sampling.''
@@ -316,7 +330,7 @@ A sixth implied constraint (power) is added from the hardware context:
 \subsection{Step 2: Compute RPN for Three Subsystems}
 \label{subsec:ch4-step2}
 
-The team identifies three high-risk subsystems from Chapter~3's prototype classification: (A)~Sort Sensor, (B)~MQTT/Wi-Fi Integration, (C)~Divert Actuator.
+The team identifies three high-risk subsystems from the Chapter~3 scoping exercise: (A)~Sort Sensor, (B)~MQTT/Wi-Fi Integration, (C)~Divert Actuator.
 For each, the team identifies the primary failure mode, scores $S$, $O$, and $D$ on the 1–10 scale from Table~\ref{tab:ch4-scale}, and computes RPN using Equation~\eqref{eq:ch4-rpn}.
 
 \bigskip
@@ -421,10 +435,10 @@ The initial wish list contains:
 \begin{enumerate}
   \item Rewrite each wish as a measurable requirement following the actor--action--threshold--condition format.
   \item Identify three failure modes (one per subsystem: moisture sensor, motorised valve, LTE-M uplink).
-  \item Assign $S$, $O$, and $D$ scores on the 1–10 scale with written justification for each score.
+  \item Assign $S$, $O$, and $D$ scores on the 1–10 scale with written justification for each S, O, and D value (nine justifications total: three failure modes × three dimensions).
   \item Compute RPN for each failure mode using Equation~\eqref{eq:ch4-rpn}, showing every multiplication step.
   \item Rank the three failure modes from highest to lowest RPN and state which subsystem should be prototyped first.
-  \item Cross-check your top-ranked item using Equation~\eqref{eq:ch4-risk} and comment on whether the two rankings agree.
+  \item For this cross-check, use the $O$ score as $P_{\text{failure}}$ and the $S$ score as $C_{\text{consequence}}$, consistent with the worked example convention. Cross-check your top-ranked item using Equation~\eqref{eq:ch4-risk} and comment on whether the two rankings agree.
 \end{enumerate}
 Do \textbf{not} use the same S, O, D values as the worked example.
 \end{quote}
@@ -452,12 +466,12 @@ Do \textbf{not} use the same S, O, D values as the worked example.
         Compute RPN for each failure mode using Equation~\eqref{eq:ch4-rpn}, showing every multiplication step.
         Rank them and state which subsystem requires a documented mitigation plan if the threshold is RPN $\geq 80$.
 
-  \item \textbf{(Applied — multi-step calculation)} A wearable health monitor team sets an acceptance criterion: ``Heart-rate measurement error $\leq$3~BPM at 95\% confidence over a 10-minute walk test.''
-        They estimate: $P_{\text{failure}} = 4$ (occasional out-of-range readings during vigorous movement), $C_{\text{consequence}} = 8$ (clinical misinterpretation risk).
-        (a) Compute $R$ using Equation~\eqref{eq:ch4-risk}.
-        (b) The team adds a real-time motion-artifact filter that lowers $O$ from 4 to 2.
-            If $D$ remains at 3 and $S = 8$, compute the new RPN and state whether the mitigation moves the failure mode below threshold (Use Equation~\eqref{eq:ch4-rpn}).
-        (c) Explain in one sentence why the two metrics ($R$ and RPN) give complementary information.
+  \item \textbf{(Applied — multi-step calculation)} A wearable ECG monitor has a motion-artifact failure mode with the following FMEA scores: Severity $S = 8$, Occurrence $O = 4$, Detection $D = 3$.
+        \begin{enumerate}
+          \item[(a)] Compute $R = P_{\text{failure}} \times C_{\text{consequence}}$ (Equation~\ref{eq:ch4-risk}) using $P_{\text{failure}} = O = 4$ and $C_{\text{consequence}} = S = 8$ as the cross-check convention. Does this failure mode qualify as high-risk ($R > 16$)?
+          \item[(b)] Compute the RPN. The team then adds a motion-artifact filter that lowers $O$ from 4 to 2 while $S$ and $D$ remain unchanged. Recompute the RPN and state whether the mitigation moves the failure mode below the RPN threshold of 80.
+          \item[(c)] Comment in one sentence on whether the $R$-score ranking (Part~a) and the RPN ranking (Part~b) agree.
+        \end{enumerate}
 
   \item \textbf{(Conceptual)} Define the \emph{critical path of unknowns} and explain how it differs from the highest-RPN item in the risk register.
         Give an example where the highest-RPN item is \emph{not} on the critical path of unknowns and describe what the team should do first.
@@ -470,7 +484,7 @@ Do \textbf{not} use the same S, O, D values as the worked example.
 \label{sec:ch4-artifact}
 % ─────────────────────────────────────────────────────────────────────────────
 
-By completing this chapter's activities, you produce the core of \textbf{Milestone~1: the Proposal}.
+You produce the core of \textbf{Milestone~1: the Proposal} --- together these three parts constitute your Gate~2 evidence package, the scoping deliverables that earn a Go decision to proceed with development.
 The artifact has three interlocking parts:
 
 \begin{enumerate}
@@ -489,7 +503,7 @@ The artifact has three interlocking parts:
         This paragraph becomes the executive summary of your Milestone~1 submission.
 \end{enumerate}
 
-Together, these three parts answer the investor's foundational question: \emph{``What will this thing do, how will you know it works, and what could kill the project?''}
+\emph{`What will this thing do, how will you know it works, and what could kill the project?'} --- these three parts of the Milestone~1 Proposal answer that investor question directly.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section*{Summary}
@@ -497,10 +511,11 @@ Together, these three parts answer the investor's foundational question: \emph{`
 \label{sec:ch4-summary}
 % ─────────────────────────────────────────────────────────────────────────────
 
-This chapter introduced the anatomy of a specification — functional requirements, performance targets, constraints, interfaces, and acceptance criteria — and showed how each element must be measurable and testable.
+A specification is a contract: every element — functional requirements, performance targets, constraints, interfaces, and acceptance criteria — must be measurable and testable, or it is not yet a requirement.
 It established the discipline of separating \emph{what} (requirements) from \emph{how} (design), a distinction that keeps early design choices from foreclosing better alternatives.
 Two complementary risk tools were presented: the two-factor risk equation $R = P_{\text{failure}} \times C_{\text{consequence}}$ (Equation~\eqref{eq:ch4-risk}) for rapid stakeholder communication, and the FMEA Risk Priority Number $\text{RPN} = S \cdot O \cdot D$ (Equation~\eqref{eq:ch4-rpn}) for engineering-level prioritisation that accounts for detection difficulty.
 Applied to the IoT robotic sorting subsystem, the analysis ranked MQTT/Wi-Fi integration (RPN = 168) as the first prototype target, followed by the sort sensor (RPN = 80), and confirmed that the divert actuator (RPN = 48) can proceed with standard integration testing.
 
 You now have a specification table, a risk register, and a scoping rationale — the three components of the Milestone~1 Proposal.
-Chapter~5 takes this artifact as its starting point and shows how to translate the highest-risk assumptions into a \emph{prototype plan}: selecting fidelity levels, designing the first experiment, and scheduling the sprint sequence that will resolve the critical unknowns in the right order.
+Chapter~5 takes this artifact as its starting point: the specification defines the required behaviour at each subsystem boundary, and the risk register flags which interfaces carry the highest-consequence unknowns.
+Chapter~5 shows how to decompose the system into subsystems, define the interfaces between them, and produce the architecture diagram that makes integration testable.
