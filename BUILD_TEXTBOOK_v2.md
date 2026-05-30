@@ -42,7 +42,7 @@ and stops for review between chapters.
 | 4  | `chapters/04-specifications`        | Specifications & Risk Prioritization | DONE | 3/3 | Stage-Gate opener added; LO4 added; eq:ch4-budget-sum added; Gate 2 refs added; Q4 + TIY fixed; editor + instructor review applied |
 | 5  | `chapters/05-architecture`          | System Architecture & Interface Definition | DONE | 3/3 | Stage-Gate opener; timing/power/RSS budgets; interface table; Gate 3 deliverable checklist; editor + instructor review applied |
 | 6  | `chapters/06-component-selection`   | Component Selection & Datasheet Literacy | DONE | 3/3 | Derating, margin, lifecycle, MTBF; D_f=0.917 failure flagged; Design action required callout; editor + instructor review applied |
-| 7  | `chapters/07-dfx`                   | Design for X | DONE | 3/3 | DFM/DFA/DFT/DFR; η_A + DPMO worked examples; DFX checklist artifact; editor + instructor review applied |
+| 7  | `chapters/07-dfx`                   | Design for X | DONE | 3/3 | DFM/DFA/DFT/DFR; η_A + DPMO worked examples; DFX checklist portfolio entry; editor + instructor review applied |
 | 8  | `chapters/08-ai`                    | AI in Prototyping: Capability & Risk | DONE | 2/2 | HITL cycle; eq:ch8-expected-cost; I²C pull-up worked example; AI use log format; editor + instructor review applied |
 | 9  | `chapters/09-iot-robotics`          | IoT, Robotics & Safety as a Design Obligation | DONE | 3/3 | IoT attack surfaces; duty-cycle power budget; SF worked example; eq:ch9-iavg, eq:ch9-tlife, eq:ch9-sf; editor + instructor review applied |
 | 10 | `chapters/10-planning`              | Planning & Schedule Management | DONE | 3/3 | CPM/PERT; 6-activity sorter build; critical path A→B→D→F=15d; eq:ch10-slack, eq:ch10-pert-te, eq:ch10-pert-sigma; Gantt + CPM network + PERT dist figures; editor + instructor review applied |
@@ -153,7 +153,7 @@ for readability verification only).
   4. At least one **worked example** with explicit arithmetic (show every step).
   5. **In Practice** callout(s) — short real-world scenarios.
   6. **Common Pitfalls** — misconceptions to dismantle directly.
-  7. **End-of-chapter artifact** the reader produces (feeds their portfolio).
+  7. **Portfolio Entry** (`\section*{Portfolio Entry}`) — the deliverable the student submits as a section of their prototype documentation. For chapters where a standalone graded exercise is more appropriate, use `\section*{Assignment}` instead.
   8. **Summary** + one-paragraph transition to the next chapter.
 - **LaTeX conventions:**
   - `\chapter{}`, `\section{}`, `\subsection{}` — Sparkle styles automatically.
@@ -352,7 +352,7 @@ illustrative $m$ and GM% from a target price and estimated variable cost.
 **Common pitfalls.** Technically impressive ≠ good prototype; "it works" ≠ "business
 case proven"; reading an economic dead-end as failure.
 
-**End-of-chapter artifact.** One-page project context brief: project, business model,
+**Portfolio Entry.** One-page project context brief: project, business model,
 firm context, single business question the prototype must answer.
 
 **Transition.** Into Ch.2 — the formal product development process and how prototyping
@@ -419,7 +419,7 @@ proving the AI inference speed (performance feature) and ran out of time.
 **Common pitfalls.** Treating all features as equally important; prototyping known/
 threshold features for comfort; skipping Kano and relying on intuition.
 
-**End-of-chapter artifact.** Kano analysis table for the reader's project + initial
+**Portfolio Entry.** Kano analysis table for the reader's project + initial
 prototype scope derived from it.
 
 **Transition.** Into Ch.3 — the seven-stage prototyping workflow that executes within
@@ -459,7 +459,7 @@ question; compare relative effort; argue for the lower-fidelity choice.
 
 **Common pitfalls.** "Prototype = mini-product"; "higher fidelity is always better."
 
-**End-of-chapter artifact.** Statement of the central question the prototype must answer
+**Portfolio Entry.** Statement of the central question the prototype must answer
 + chosen fidelity with justification.
 
 **Transition.** Into Ch.4 — producing the specification and risk register.
@@ -497,7 +497,7 @@ three subsystems and rank.
 
 **Common pitfalls.** Unmeasurable criteria; solutions embedded in requirements.
 
-**End-of-chapter artifact.** Specification + risk register + scoping rationale.
+**Portfolio Entry.** Specification + risk register + scoping rationale.
 
 **Transition.** Into Ch.5 — decomposing the specification into a system architecture.
 
@@ -536,7 +536,7 @@ three measurement errors via RSS.
 **Common pitfalls.** Starting a favourite subsystem before interfaces are fixed; informal
 "we'll figure it out" interfaces.
 
-**End-of-chapter artifact.** System block diagram + interface table with budgets.
+**Portfolio Entry.** System block diagram + interface table with budgets.
 
 **Transition.** Into Ch.6 — selecting the components that populate this architecture.
 
@@ -600,7 +600,7 @@ design freeze; the redesign cost exceeded the original prototype budget.
 no second source identified; accepting a component because it "works in the lab" without
 checking derating.
 
-**End-of-chapter artifact.** Component selection table (critical components): part
+**Portfolio Entry.** Component selection table (critical components): part
 number, $D_f$, margin, lifecycle status, alternate part, supply-chain risk note.
 
 **Transition.** Into Ch.7 — designing the assembly and manufacturing process around the
@@ -669,7 +669,7 @@ would have exposed in 20 minutes.
 production volumes (they matter at prototype volume too); no test points because "we
 can always probe the board."
 
-**End-of-chapter artifact.** DFX review checklist for the reader's prototype design,
+**Portfolio Entry.** DFX review checklist for the reader's prototype design,
 with $\eta_A$ computed and three DFT features explicitly designed in.
 
 **Transition.** Into Ch.8 — using AI tools within the design process you have just
@@ -723,7 +723,7 @@ the cost of bench verification is justified.
 **Common pitfalls.** Trusting plausible output without verification; submitting
 confidential design data to public tools; no record of AI involvement in a design.
 
-**End-of-chapter artifact.** AI use log entries: tool used, output produced, verification
+**Portfolio Entry.** AI use log entries: tool used, output produced, verification
 method, result.
 
 **Transition.** Into Ch.9 — IoT connectivity, robotics, and the safety and security
@@ -779,7 +779,7 @@ show how halving $D$ nearly doubles life.
 **Common pitfalls.** "Add security later"; default credentials shipped; no e-stop on
 a moving prototype; EMC treated as a compliance problem rather than a design problem.
 
-**End-of-chapter artifact.** Updated design records with security, power budget, and
+**Portfolio Entry.** Updated design records with security, power budget, and
 safety design decisions explicitly documented.
 
 **Transition.** Into Ch.10 — managing the schedule and plan for the build.
@@ -820,7 +820,7 @@ compute $t_e$ and $\sigma$ from $(a,m,b) = (3,5,10)$ days.
 **Common pitfalls.** Gantt made once and never updated; component lead times not
 scheduled; confusing the critical path with the longest task.
 
-**End-of-chapter artifact.** Gantt chart + updated risk register.
+**Portfolio Entry.** Gantt chart + updated risk register.
 
 **Transition.** Into Ch.11 — the bill of materials and procurement chain.
 
@@ -858,7 +858,7 @@ $C_{\text{BOM}}$ total; compare two supplier quotes on price and lead time.
 **Common pitfalls.** BOM as an afterthought; no alternates; wrong footprint from a
 missing designator.
 
-**End-of-chapter artifact.** Costed BOM + purchase list + procurement records.
+**Portfolio Entry.** Costed BOM + purchase list + procurement records.
 
 **Transition.** Into Ch.12 — the economics that the BOM cost implies at production
 volume.
@@ -899,7 +899,7 @@ $c_v=\$40$) and injection moulding ($C_f=\$8{,}000$, $c_v=\$6$).
 
 **Common pitfalls.** Assuming prototype unit cost = production unit cost.
 
-**End-of-chapter artifact.** Preliminary cost analysis with $C_{\text{unit}}$ at three
+**Portfolio Entry.** Preliminary cost analysis with $C_{\text{unit}}$ at three
 volumes (feeds Ch.17).
 
 **Transition.** Into Ch.13 — managing design history and version control.
@@ -960,7 +960,7 @@ differed from the schematic. No one could answer.
 treating git as a backup tool rather than a history tool; skipping the DHF because
 "we'll remember."
 
-**End-of-chapter artifact.** Git repository for the reader's project with a commit log
+**Portfolio Entry.** Git repository for the reader's project with a commit log
 covering the design period; a DHF index page linking design records to the repo.
 
 **Transition.** Into Ch.14 — validating the design you have just rigorously documented.
@@ -1015,7 +1015,7 @@ compute $P(\text{top event})$; identify the highest-priority test from the resul
 **Common pitfalls.** Tests written to confirm success; testing after the fact; ignoring
 variation; building the fault tree after the failure occurs instead of before.
 
-**End-of-chapter artifact.** Test procedure + raw data table + fault tree for critical
+**Portfolio Entry.** Test procedure + raw data table + fault tree for critical
 subsystems + iteration decision memo.
 
 **Transition.** Into Ch.15 — protecting what you have just proven.
@@ -1073,7 +1073,7 @@ what the team should do before showing the prototype at a trade show.
 assuming employer-provided tools mean employer-owns-nothing; skipping the NDA because
 the supplier "seems trustworthy."
 
-**End-of-chapter artifact.** An IP checklist for the reader's project: potential
+**Portfolio Entry.** An IP checklist for the reader's project: potential
 protectable elements, ownership assignment, NDA requirement, prior-art search status.
 
 **Transition.** Into Ch.16 — compiling the evidence into a portfolio that can support
@@ -1122,7 +1122,7 @@ changed.
 **Common pitfalls.** Writing the portfolio from memory; as-built BOM never reconciled;
 100% coverage assumed without checking.
 
-**End-of-chapter artifact.** Draft portfolio + as-built BOM + traceability matrix with
+**Portfolio Entry.** Draft portfolio + as-built BOM + traceability matrix with
 coverage percentage.
 
 **Transition.** Into Ch.17 — the closing cost analysis and the case for Gate 3.
@@ -1162,7 +1162,7 @@ statement.
 
 **Common pitfalls.** "It works" = "ready to produce"; negative economic finding = failure.
 
-**End-of-chapter artifact.** Final portfolio with production cost projection, Gate 3
+**Portfolio Entry.** Final portfolio with production cost projection, Gate 3
 readiness statement, and lessons learned.
 
 **Transition.** Forward to Project II — the prototype becomes a product.
@@ -1260,7 +1260,7 @@ must be reused unchanged in Ch.17. Lock these values in Ch.11 and record them he
 - [ ] Folder + `images/` created (or renamed per §3 for REDO chapters).
 - [ ] All required figures: vector PDF + 200 dpi PNG proof viewed and verified clean.
 - [ ] `chapter.tex`: Stage-Gate opener, objectives, all sections, all equations with
-      worked arithmetic, In Practice callout(s), Common Pitfalls, artifact, summary,
+      worked arithmetic, In Practice callout(s), Common Pitfalls, Portfolio Entry (or Assignment), summary,
       transition.
 - [ ] Every figure referenced in text before it appears; captions are full sentences.
 - [ ] `\index{}` on every bold-first-use term.
