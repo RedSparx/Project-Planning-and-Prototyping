@@ -49,11 +49,11 @@ and stops for review between chapters.
 | 11 | `chapters/11-bom-procurement`       | Bill of Materials & Procurement | DONE | 3/3 | 8-line sorter BOM; C_BOM=$124.85 CAD; eq:ch11-ext, eq:ch11-bom-total, eq:ch11-order-qty; doc-chain + BOM tree + cost-rollup figures; editor + instructor review applied |
 | 12 | `chapters/12-economics`             | Low-Volume Production Economics | DONE | 3/3 | C_unit hyperbola; process break-even N*=14.3→15; C_fixed=$8,000 CAD, c_var=$480 CAD (LOCKED for Ch.17); eq:ch12-unit-cost, eq:ch12-breakeven; 3 figures; editor + instructor review applied |
 | 13 | `chapters/13-version-control`       | Version Control & Design History | DONE | 3/3 | git branching (main/develop/feature/hotfix); release tagging v0.1-proto/v1.0-gate3; git-lfs; DHF; ECO; TIY aquarium controller; 3 figures; editor + instructor review applied |
-| 14 | `chapters/14-validation`            | Validation & Test Procedure Design | TODO | 0/4 | Failure analysis section added |
-| 15 | `chapters/15-ip`                    | Intellectual Property Basics | TODO | 0/2 | New chapter |
-| 16 | `chapters/16-documentation`         | Documentation & Portfolio Assembly | TODO | 0/3 | Shortened (~1500 words) |
-| 17 | `chapters/17-cost-bridge`           | Cost Analysis & the Bridge to Project II | TODO | 0/3 | |
-| CP | `courseplan/`                       | 12-Week Course Plan (standalone document) | TODO | 0/2 | Build after Ch.17 |
+| 14 | `chapters/14-validation`            | Validation & Test Procedure Design | DONE | 4/4 | Statistical tolerance (x̄, s, z, Cp); fault tree P(top)=0.0511; eq:ch14-mean/std/margin/cp/or/and; 10-point latency worked example (Cp=1.73 PASS); TIY thermal test; Portfolio Entry; editor + instructor review applied |
+| 15 | `chapters/15-ip`                    | Intellectual Property Basics | DONE | 2/2 | Patent/trade secret/copyright/trademark comparison; NDA timing; pre-show IP audit for running example; TIY wearable ECG; Portfolio Entry (IP checklist 4 items); editor + instructor review applied |
+| 16 | `chapters/16-documentation`         | Documentation & Portfolio Assembly | DONE | 3/3 | eq:ch16-coverage; 14-section portfolio map; traceability matrix; BOM substitution worked example (R coverage 80%); TIY 3-axis force sensor; Portfolio Entry (assembled package + as-built BOM + matrix); editor + instructor review applied |
+| 17 | `chapters/17-cost-bridge`           | Cost Analysis & the Bridge to Project II | DONE | 3/3 | eq:ch17-cunit/nbe/profit; C_unit hyperbola (N=1→$8,480, N=15→$1,013, N=50→$640, N=500→$496); N_be=11.11→12; Gate 3 readiness statement; Portfolio Entry = Milestone 3 (docs + live presentation); final chapter |
+| CP | `courseplan/`                       | 12-Week Course Plan (standalone document) | DONE | 2/2 | 12-week schedule longtable; 3 milestones (M1 Wk6 Spec Review, M2 Wk9 Build Review, M3 Wk12 Gate 3 Presentation); SPLI note; Stage-Gate context figure; compiles standalone to 10 pages |
 
 Status values: `TODO` `REDO` `DONE` `BLOCKED`
 
