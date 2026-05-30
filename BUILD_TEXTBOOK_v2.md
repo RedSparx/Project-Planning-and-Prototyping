@@ -45,10 +45,10 @@ and stops for review between chapters.
 | 7  | `chapters/07-dfx`                   | Design for X | DONE | 3/3 | DFM/DFA/DFT/DFR; η_A + DPMO worked examples; DFX checklist artifact; editor + instructor review applied |
 | 8  | `chapters/08-ai`                    | AI in Prototyping: Capability & Risk | DONE | 2/2 | HITL cycle; eq:ch8-expected-cost; I²C pull-up worked example; AI use log format; editor + instructor review applied |
 | 9  | `chapters/09-iot-robotics`          | IoT, Robotics & Safety as a Design Obligation | DONE | 3/3 | IoT attack surfaces; duty-cycle power budget; SF worked example; eq:ch9-iavg, eq:ch9-tlife, eq:ch9-sf; editor + instructor review applied |
-| 10 | `chapters/10-planning`              | Planning & Schedule Management | TODO | 0/3 | |
-| 11 | `chapters/11-bom-procurement`       | Bill of Materials & Procurement | TODO | 0/3 | |
-| 12 | `chapters/12-economics`             | Low-Volume Production Economics | TODO | 0/3 | |
-| 13 | `chapters/13-version-control`       | Version Control & Design History | TODO | 0/3 | New chapter |
+| 10 | `chapters/10-planning`              | Planning & Schedule Management | DONE | 3/3 | CPM/PERT; 6-activity sorter build; critical path A→B→D→F=15d; eq:ch10-slack, eq:ch10-pert-te, eq:ch10-pert-sigma; Gantt + CPM network + PERT dist figures; editor + instructor review applied |
+| 11 | `chapters/11-bom-procurement`       | Bill of Materials & Procurement | DONE | 3/3 | 8-line sorter BOM; C_BOM=$124.85 CAD; eq:ch11-ext, eq:ch11-bom-total, eq:ch11-order-qty; doc-chain + BOM tree + cost-rollup figures; editor + instructor review applied |
+| 12 | `chapters/12-economics`             | Low-Volume Production Economics | DONE | 3/3 | C_unit hyperbola; process break-even N*=14.3→15; C_fixed=$8,000 CAD, c_var=$480 CAD (LOCKED for Ch.17); eq:ch12-unit-cost, eq:ch12-breakeven; 3 figures; editor + instructor review applied |
+| 13 | `chapters/13-version-control`       | Version Control & Design History | DONE | 3/3 | git branching (main/develop/feature/hotfix); release tagging v0.1-proto/v1.0-gate3; git-lfs; DHF; ECO; TIY aquarium controller; 3 figures; editor + instructor review applied |
 | 14 | `chapters/14-validation`            | Validation & Test Procedure Design | TODO | 0/4 | Failure analysis section added |
 | 15 | `chapters/15-ip`                    | Intellectual Property Basics | TODO | 0/2 | New chapter |
 | 16 | `chapters/16-documentation`         | Documentation & Portfolio Assembly | TODO | 0/3 | Shortened (~1500 words) |
@@ -1244,9 +1244,9 @@ IoT connectivity + moving robotic element requiring safety design.
 | AI use log | 6-field format: tool, prompt summary, output, verification method, result (accept/reject), E[C_err] computed. I²C pull-up worked example: p_err=0.15, C_consequence=$480, cost_verify=$40, E[C_err]=$72 → verify → AI rejected → 1.0 kΩ selected. | Ch.8 |
 | Power/battery numbers | MQTT sorter node: I_active=80 mA, I_sleep=0.05 mA, D=0.02, C_batt=2000 mAh → I_avg=1.649 mA, t_life=1212.9 h ≈ 50.5 days. Sensitivity: D=0.01 → 98.1 days. | Ch.9 |
 | Safety records | Sort-gate bracket: PLA, capacity=70 N, F_applied=13.24 N, SF=5.29 ≥ 2 → passes. E-stop: hardware NC relay in 12 V motor rail. Fail-safe: sort gate centred, conveyor stopped. | Ch.9 |
-| Schedule — key activities, critical path | *(set in Ch.10)* | Ch.10 |
-| BOM totals and $C_{\text{fixed}}$, $c_{\text{var}}$ | *(set in Ch.11–12)* | Ch.11–12 |
-| Target price $p$ | *(set in Ch.12)* | Ch.12 |
+| Schedule — key activities, critical path | Sorter build: A(3d)→B(7.67d)→D(3d)→F(2d)=15d critical; slack: C=2d, E=3d. Risk register: IMU cost overrun (yellow), Wi-Fi certification (red). | Ch.10 |
+| BOM totals and $C_{\text{fixed}}$, $c_{\text{var}}$ | 8-line BOM: MCU $18.50, IMU $12.40, sensor array $28.00, motor driver $9.75, relay $4.20, connectors $6.00, PCB $32.00, enclosure $14.00 → $C_{\text{BOM}}=\$124.85$ CAD. $C_{\text{fixed}}=\$8{,}000$ CAD (tooling + NRE). | Ch.11–12 |
+| Target price $p$ | $p=\$1{,}200$ CAD, $c_{\text{var}}=\$480$ CAD (locked). $N^{*}=14.3 \to 15$ units (3D-print vs injection mould break-even). GM\%=60\%. | Ch.12 |
 | Validation results + FTA top-event probability | *(set in Ch.14)* | Ch.14 |
 | IP checklist | *(set in Ch.15)* | Ch.15 |
 
