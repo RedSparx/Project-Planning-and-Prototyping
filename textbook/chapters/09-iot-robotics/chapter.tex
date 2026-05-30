@@ -731,15 +731,37 @@ installation impact.
 \end{enumerate}
 
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Summary and Transition}
+\section*{Portfolio Entry}
+\addcontentsline{toc}{section}{Portfolio Entry}
+\label{sec:ch9-portfolio}
+% ─────────────────────────────────────────────────────────────────────────────
+
+Update your design records with three entries.
+Each entry is a section of your prototype documentation package and will be
+audited at Gate~3.
+
+\begin{enumerate}
+  \item \textit{Security design decisions} --- protocol choice (MQTT over TLS,
+        CoAP with DTLS, or BLE with LE Secure Connections), authentication method
+        (per-device credentials or client certificates), and credential management
+        policy (how credentials are generated, stored, distributed, and revoked).
+  \item \textit{Power budget table} --- $I_{\text{active}}$, $I_{\text{sleep}}$,
+        $D$, $I_{\text{avg}}$, $C_{\text{batt}}$, $t_{\text{life}}$, and at
+        least one sensitivity row (e.g., halved duty cycle or reduced sleep current).
+  \item \textit{Safety design decisions} --- e-stop type, location, and wiring
+        diagram; guarding specification (material, dimensions, mounting method);
+        fail-safe state definition for every actuator; and SF calculation for all
+        load-bearing elements, with cross-section area and material data cited.
+\end{enumerate}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{Chapter Summary}
+\addcontentsline{toc}{section}{Chapter Summary}
 \label{sec:ch9-summary}
 % ─────────────────────────────────────────────────────────────────────────────
 
 Chapter~9 treated security and physical safety as quantitative Stage~3
 obligations, not qualitative afterthoughts.
-The calculations below are the deliverables; the design records that carry them
-are what Gate~4 reviewers will audit.
-
 The quantitative tools this chapter introduced are:
 \begin{itemize}
   \item $I_{\text{avg}} = D \cdot I_{\text{active}} + (1-D) \cdot I_{\text{sleep}}$
@@ -754,22 +776,6 @@ The quantitative tools this chapter introduced are:
 The three non-negotiable physical-safety features for any moving prototype are:
 a hardware e-stop in the motor power path, physical guarding around every
 hazardous moving part, and a documented fail-safe state for every actuator.
-
-\textbf{End-of-chapter artifact.}
-Update your design records with three entries:
-\begin{enumerate}
-  \item \textit{Security design decisions} --- protocol choice (MQTT over TLS,
-        CoAP with DTLS, or BLE with LE Secure Connections), authentication method
-        (per-device credentials or client certificates), and credential management
-        policy (how credentials are generated, stored, distributed, and revoked).
-  \item \textit{Power budget table} --- $I_{\text{active}}$, $I_{\text{sleep}}$,
-        $D$, $I_{\text{avg}}$, $C_{\text{batt}}$, $t_{\text{life}}$, and at
-        least one sensitivity row (e.g., halved duty cycle or reduced sleep current).
-  \item \textit{Safety design decisions} --- e-stop type, location, and wiring
-        diagram; guarding specification (material, dimensions, mounting method);
-        fail-safe state definition for every actuator; and SF calculation for all
-        load-bearing elements, with the cross-section area and material data cited.
-\end{enumerate}
 
 Chapter~9 produced three design-record entries --- a security design decision
 log, a power budget table, and a safety design decision log --- that together
